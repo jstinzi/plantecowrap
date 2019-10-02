@@ -1,0 +1,22 @@
+Package: plantecowrap
+Type: Package
+Title: Enhancing capabilities of plantecophys
+Version: 0.0.9000
+Author: person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
+  role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7628-4201"))
+Maintainer: Joseph Stinziano <josephstinziano@gmail.com>
+Description: Provides wrapping functions to add to capabilities to the
+    plantecophys package by Remko Duursma. Key added capabilities include
+    temperature responses of mesophyll conductance, gamma star, and Km.
+License: CC BY-NC-SA 4.0
+Depends: R (>= 3.5.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Imports: 
+    plantecophys,
+    tidyr
