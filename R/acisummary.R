@@ -23,7 +23,7 @@ acisummary <- function(data,
   data$group3 <- data[,group3]
   
   data <- unite(data, col = "group",
-                from = c("group1", "group2", "group3"),
+                c("group1", "group2", "group3"),
                 sep = "_")
   
   data <- split(data, data$group)
