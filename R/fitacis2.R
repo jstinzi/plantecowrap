@@ -8,6 +8,8 @@
 #' @param Egm activation energy of mesophyll conductance in kJ/mol
 #' @param K25 Km at 25C
 #' @param Ek activation energy of Km in kJ/mol
+#' @param Gstar25 photorespiratory CO2 compensation point at 25 Celsius in ppm
+#' @param Egamma activation energy of GammaStar in kJ/mol
 #' @param fitmethod See ?fitaci in plantecophys
 #' @param fitTPU See ?fitaci in plantecophys. Set to TRUE/FALSE
 #' @param Tcorrect See ?fitaci in plantecophys. Default here is FALSE
@@ -21,7 +23,14 @@
 #' @param varnames See ?fitaci in plantecophys
 #'
 #' @return fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf
-#'         output matches the fitacis function from plantecophys
+#'         output matches the fitacis function from plantecophys. Note
+#'         that the temperature response function of Km is derived from
+#'         the temperature responses of Ko and Kc in Bernacchi et al.
+#'         2001, as is the GammaStar temperature response defaults. The
+#'         gm defaults are from Bernacchi et al. 2002 fitted between 1
+#'         and 35 Celsius. Also note that this ALWAYS uses gm. To fit
+#'         data on a "Ci-basis", set gm25 really high (e.g. 10000) and
+#'         Egm to 0.
 #' @importFrom tidyr unite
 #' @importFrom plantecophys fitaci
 #' @export
@@ -30,10 +39,12 @@ fitacis2 <- function(data,
                      group1,
                      group2,
                      group3,
-                     gm25,
-                     Egm,
-                     K25,
-                     Ek,
+                     gm25 = 0.08701,
+                     Egm = 47.650,
+                     K25 = 718.40, #at 100 kPa, 21% O2
+                     Ek = 65.50828,
+                     Gstar25 = 42.75,
+                     Egamma = 37.83,
                      fitmethod,
                      fitTPU,
                      Tcorrect,
@@ -76,6 +87,14 @@ fitacis2 <- function(data,
                          0.008314))
     Patm <- mean(data[[i]]$Press)
     
+    GammaStar <- Gstar25 * exp(Egamma * 
+                      (mean(data[[i]]$Tleaf + 
+                              273.15) - 298.15) /
+                      (298.15 * 
+                         mean(data[[i]]$Tleaf + 273.15) *
+                         0.008314))
+
+    
     fits[[i]] <- fitaci(data[[i]], 
                         Patm = Patm,
                         varnames = varnames,
@@ -84,6 +103,7 @@ fitacis2 <- function(data,
                         fitTPU = fitTPU,
                         gmeso = gmeso, 
                         Km = Km,
+                        GammaStar = GammaStar,
                         useRd = useRd,
                         citransition = citransition,
                         alphag = alphag,
