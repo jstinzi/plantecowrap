@@ -13,9 +13,9 @@ toptfit(Ea, Hd, kopt, Tleaf, Topt)
 
 \item{kopt}{optimum parameter value}
 
-\item{Tleaf}{leaf temperature in K}
+\item{Tleaf}{leaf temperature in Celsius}
 
-\item{Topt}{optimum leaf temperature in K}
+\item{Topt}{optimum leaf temperature in Celsius}
 
 \item{param25}{parameter value at 25 C}
 }

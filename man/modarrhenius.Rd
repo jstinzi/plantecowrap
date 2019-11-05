@@ -4,18 +4,16 @@
 \alias{modarrhenius}
 \title{Fitting the peaked Arrhenius temperature response model}
 \usage{
-modarrhenius(param25, Ea, Hd, dS, Tleaf)
+modarrhenius(Ea, Hd, dS, Tleaf)
 }
 \arguments{
-\item{param25}{parameter value at 25 C}
-
 \item{Ea}{activation energy in kJ/mol}
 
 \item{Hd}{deactivation energy in kJ/mol}
 
 \item{dS}{entropy parameter in kJ/mol}
 
-\item{Tleaf}{leaf temperature in K}
+\item{Tleaf}{leaf temperature in Celsius}
 }
 \value{
 modarrhenius is used to fit a peaked model

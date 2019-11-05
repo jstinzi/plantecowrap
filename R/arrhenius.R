@@ -1,13 +1,12 @@
 #' Fitting the Arrhenius temperature response model
 #'
-#' @param param25 parameter value at 25 C
 #' @param Ea activation energy in kJ/mol
-#' @param Tleaf leaf temperature in K
+#' @param Tleaf leaf temperature in Celsius
 #'
 #' @return arrhenius is used to fit an exponential model
 #' @export
 #'
-arrhenius <- function(param25, Ea, Tleaf){
-  param = param25 * exp(Ea * (Tleaf - 298.15) / 
-                          (298.15 * Tleaf * 0.008314))
+arrhenius <- function(Ea, Tleaf){
+  param = exp(Ea * ((Tleaf + 273.15) - 298.15) / 
+                          (298.15 * (Tleaf + 273.15) * 0.008314))
 }

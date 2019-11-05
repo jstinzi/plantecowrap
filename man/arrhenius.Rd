@@ -4,14 +4,12 @@
 \alias{arrhenius}
 \title{Fitting the Arrhenius temperature response model}
 \usage{
-arrhenius(param25, Ea, Tleaf)
+arrhenius(Ea, Tleaf)
 }
 \arguments{
-\item{param25}{parameter value at 25 C}
-
 \item{Ea}{activation energy in kJ/mol}
 
-\item{Tleaf}{leaf temperature in K}
+\item{Tleaf}{leaf temperature in Celsius}
 }
 \value{
 arrhenius is used to fit an exponential model

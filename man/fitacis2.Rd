@@ -4,11 +4,12 @@
 \alias{fitacis2}
 \title{Fit A-Ci curves with custom kinetics}
 \usage{
-fitacis2(data, group1, group2, group3, gm25, Egm, K25, Ek, fitmethod,
-  fitTPU, Tcorrect, useRd = FALSE, citransition = NULL, alphag = 0,
-  PPFD = NULL, Tleaf = NULL, alpha = 0.24, theta = 0.85,
-  varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci = "Ci", PPFD =
-  "PARi", Rd = "Rd"))
+fitacis2(data, group1, group2, group3, gm25 = 0.08701, Egm = 47.65,
+  K25 = 718.4, Ek = 65.50828, Gstar25 = 42.75, Egamma = 37.83,
+  fitmethod, fitTPU, Tcorrect, useRd = FALSE, citransition = NULL,
+  alphag = 0, PPFD = NULL, Tleaf = NULL, alpha = 0.24,
+  theta = 0.85, varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci =
+  "Ci", PPFD = "PARi", Rd = "Rd"))
 }
 \arguments{
 \item{data}{data frame with A/Ci curves}
@@ -26,6 +27,10 @@ fitacis2(data, group1, group2, group3, gm25, Egm, K25, Ek, fitmethod,
 \item{K25}{Km at 25C}
 
 \item{Ek}{activation energy of Km in kJ/mol}
+
+\item{Gstar25}{photorespiratory CO2 compensation point at 25 Celsius in ppm}
+
+\item{Egamma}{activation energy of GammaStar in kJ/mol}
 
 \item{fitmethod}{See ?fitaci in plantecophys}
 
@@ -51,7 +56,14 @@ fitacis2(data, group1, group2, group3, gm25, Egm, K25, Ek, fitmethod,
 }
 \value{
 fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf
-        output matches the fitacis function from plantecophys
+        output matches the fitacis function from plantecophys. Note
+        that the temperature response function of Km is derived from
+        the temperature responses of Ko and Kc in Bernacchi et al.
+        2001, as is the GammaStar temperature response defaults. The
+        gm defaults are from Bernacchi et al. 2002 fitted between 1
+        and 35 Celsius. Also note that this ALWAYS uses gm. To fit
+        data on a "Ci-basis", set gm25 really high (e.g. 10000) and
+        Egm to 0.
 }
 \description{
 Fit A-Ci curves with custom kinetics
