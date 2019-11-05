@@ -1,3 +1,11 @@
+#' Fitting multiple temperature response curves
+#'
+#' @param data Dataframe with multiple temperature response curves
+#' @param group Grouping variable to use
+#' @param varnames Variable names
+#'
+#' @return fit_topt_VJs fits multiple Vcmax and Jmax temperature responses
+#' @export
 fit_topt_VJs <- function(data,
                          group,
                          varnames = list(Vcmax = "Vcmax",

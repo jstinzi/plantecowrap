@@ -3,6 +3,7 @@
 export(acisummary)
 export(arrhenius)
 export(fit_topt_VJ)
+export(fit_topt_VJs)
 export(fitacis2)
 export(get_t_graphs)
 export(get_t_pars)
