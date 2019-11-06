@@ -16,8 +16,6 @@ toptfit(Ea, Hd, kopt, Tleaf, Topt)
 \item{Tleaf}{leaf temperature in Celsius}
 
 \item{Topt}{optimum leaf temperature in Celsius}
-
-\item{param25}{parameter value at 25 C}
 }
 \value{
 toptfit is used to fit a Topt model

@@ -110,7 +110,7 @@ fitacis2 <- function(data,
                         PPFD = PPFD,
                         Tleaf = Tleaf,
                         alpha = alpha,
-                        theta = theta,)
+                        theta = theta)
     names(fits)[i] <- data[[i]]$group[1]
   }
   return(fits)

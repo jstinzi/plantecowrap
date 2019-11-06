@@ -1,6 +1,5 @@
 #' Fitting the Topt temperature response model
 #'
-#' @param param25 parameter value at 25 C
 #' @param Ea activation energy in kJ/mol
 #' @param Hd deactivation energy in kJ/mol
 #' @param kopt optimum parameter value
