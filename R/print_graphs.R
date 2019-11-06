@@ -4,6 +4,8 @@
 #'
 #' @return print_graphs creates jpeg files from a list of graphs based on
 #' the graph names
+#' @importFrom grDevices dev.off
+#' @importFrom grDevices jpeg
 #' @export
 print_graphs <- function(data){
   for(i in 1:length(data)){

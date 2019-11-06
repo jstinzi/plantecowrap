@@ -7,6 +7,7 @@
 #' @return fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and
 #' Jmax data. Note that Hd may max out at 3000 kJ mol-1 for Jmax and 2000 for
 #' Vcmax.
+#' @importFrom stats nls.control
 #' @export
 fit_topt_VJ <- function(data,
                            varnames = list(Vcmax = "Vcmax",
