@@ -34,6 +34,13 @@
 #' @importFrom tidyr unite
 #' @importFrom plantecophys fitaci
 #' @export
+#' 
+#' @examples 
+#' \dontrun{
+#' data <- read.csv("mydata.csv")
+#' fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
+#' fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
+#' }
 #'
 fitacis2 <- function(data,
                      group1,

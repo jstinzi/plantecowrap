@@ -9,6 +9,9 @@
 #' Vcmax.
 #' @importFrom stats nls.control
 #' @export
+#' 
+#' 
+#' 
 fit_topt_VJ <- function(data,
                            varnames = list(Vcmax = "Vcmax",
                                            Jmax = "Jmax",
@@ -164,7 +167,7 @@ fit_topt_VJ <- function(data,
                                       kopt = Vcmax_fm$kopt[1],
                                       Topt = Vcmax_fm$Topt[1],
                                       Tleaf = x),
-                method = "loess",
+                method = "lm",
                 se = FALSE, size = 2)+
     geom_smooth(aes(y = Jmax_pred, x = T_model, colour = "cyan"),
                 formula = y ~ toptfit(Ea = Jmax_fm$Ea[1],
@@ -172,7 +175,7 @@ fit_topt_VJ <- function(data,
                                       kopt = Jmax_fm$kopt[1],
                                       Topt = Jmax_fm$Topt[1],
                                       Tleaf = x),
-                method = "loess",
+                method = "lm",
                 se = FALSE, size = 2)+
     geom_point(aes(fill = "pink"), colour = "black", shape = 21, size = 3)+
     geom_point(aes(y = Jmax, fill = "cyan"), colour = "black", shape = 21, size = 3)+

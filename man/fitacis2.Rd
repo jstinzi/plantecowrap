@@ -68,3 +68,11 @@ fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf
 \description{
 Fit A-Ci curves with custom kinetics
 }
+\examples{
+\dontrun{
+data <- read.csv("mydata.csv")
+fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
+fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
+}
+
+}
