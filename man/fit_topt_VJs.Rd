@@ -5,7 +5,7 @@
 \title{Fitting multiple temperature response curves}
 \usage{
 fit_topt_VJs(data, group, varnames = list(Vcmax = "Vcmax", Jmax = "Jmax",
-  Tleaf = "Tleaf"))
+  Tleaf = "Tleaf"), limit_jmax = 1e+05, limit_vcmax = 1e+05)
 }
 \arguments{
 \item{data}{Dataframe with multiple temperature response curves}
@@ -13,6 +13,10 @@ fit_topt_VJs(data, group, varnames = list(Vcmax = "Vcmax", Jmax = "Jmax",
 \item{group}{Grouping variable to use}
 
 \item{varnames}{Variable names}
+
+\item{limit_jmax}{Upper limit to Jmax values for fitting}
+
+\item{limit_vcmax}{Upper limit to Vcmax values for fitting}
 }
 \value{
 fit_topt_VJs fits multiple Vcmax and Jmax temperature responses

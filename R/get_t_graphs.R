@@ -8,7 +8,7 @@
 get_t_graphs <- function(data){
   graphs <- list()
   for(i in 1:length(data)){
-    graphs[[i]] <- data[[i]][2]
+    graphs[[i]] <- data[[i]][3]
     names(graphs[[i]]) <- names(data[i])
   }
   return(graphs)

@@ -3,6 +3,8 @@
 #' @param data Dataframe containing Vcmax, Jmax, and Tleaf
 #' @param varnames Variable names
 #' @param title Graph title, usually a group name
+#' @param limit_jmax Upper limit to Jmax values for fitting
+#' @param limit_vcmax Upper limit to Vcmax values for fitting
 #'
 #' @return fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and
 #' Jmax data. Note that Hd may max out at 3000 kJ mol-1 for Jmax and 2000 for
@@ -16,37 +18,58 @@ fit_topt_VJ <- function(data,
                            varnames = list(Vcmax = "Vcmax",
                                            Jmax = "Jmax",
                                            Tleaf = "Tleaf"),
-                        title){
+                        title = NULL,
+                        limit_jmax = 100000,
+                        limit_vcmax = 100000){
   data$Tleaf <- data[, varnames$Tleaf]
   data$Vcmax <- data[, varnames$Vcmax]
   data$Jmax <- data[, varnames$Jmax]
   
+  #Remove points that are nonsensical
+  data$Jmax <- ifelse(data$Jmax < limit_jmax, data$Jmax, NA)
+  data$Vcmax <- ifelse(data$Vcmax < limit_vcmax, data$Vcmax, NA)
+  
   outputs <- list()
+  arrhenius_out <- as.data.frame(cbind(rep(0, 2),#Parameter
+                                       rep(0, 2),#v25
+                                       rep(0, 2),#Ea
+                                       rep(0, 2),#Residual
+                                       rep(0, 2)#BIC
+                                       ))
+  colnames(arrhenius_out) <- c("Parameter", "k25", "Ea", "Residual", "BIC")
   #Basically, use Arrhenius curve to feed Ea into Topt function start
   #Try approach where you start Hd from 1 to 1000
   #select minimum residual
-  Vcmax_m <- nlsLM(data = data, 
+  Vcmax_m <- nlsLM(data = data[!is.na(data$Vcmax), ], 
                    Vcmax ~ v25 * arrhenius(Ea,
                                            Tleaf = Tleaf),
                    start = list(v25 = 1, Ea = 1),
                    control = nls.control(maxiter = 100)
   )
   
+  arrhenius_out$Parameter[1] <- "Vcmax"
+  arrhenius_out$k25[1] <- coef(Vcmax_m)[1]
+  arrhenius_out$Ea[1] <- coef(Vcmax_m)[2]
+  arrhenius_out$Residual[1] <- sum(abs(Vcmax_m$m$resid()))
+  arrhenius_out$BIC[1] <- BIC(Vcmax_m)
+  
   Vcmax_fm <- as.data.frame(cbind(rep(0, 1000),
                                   rep(0, 1000),
                                   rep(0, 1000),
                                   rep(0, 1000),
                                   rep(0, 1000),
+                                  rep(0, 1000),
                                   rep("Vcmax", 1000)))
-  colnames(Vcmax_fm) <- c("Ea", "Hd", "kopt", "Topt", "residual", "Parameter")
+  colnames(Vcmax_fm) <- c("Ea", "Hd", "kopt", "Topt", "residual", "BIC", "Parameter")
   Vcmax_fm$Ea <- as.double(Vcmax_fm$Ea)
   Vcmax_fm$Hd <- as.double(Vcmax_fm$Hd)
   Vcmax_fm$kopt <- as.double(Vcmax_fm$kopt)
   Vcmax_fm$Topt <- as.double(Vcmax_fm$Topt)
   Vcmax_fm$residual <- as.double(Vcmax_fm$residual)
+  Vcmax_fm$BIC <- as.double(Vcmax_fm$BIC)
   for(i in 1:1000){
     model <- NULL
-    model <- tryCatch(nlsLM(data = data, 
+    model <- tryCatch(nlsLM(data = data[!is.na(data$Vcmax), ], 
                             Vcmax ~ toptfit(Ea,
                                             Hd,
                                             kopt,
@@ -54,11 +77,11 @@ fit_topt_VJ <- function(data,
                                             Tleaf = Tleaf),
                             start = list(Ea = coef(Vcmax_m)[[2]],
                                          Hd = i,
-                                         kopt = max(data$Vcmax),
-                                         Topt = max(data$Tleaf)),
+                                         kopt = max(data[!is.na(data$Vcmax), ]$Vcmax),
+                                         Topt = max(data[!is.na(data$Vcmax), ]$Tleaf)),
                             lower = c(0, 0, 0, 0),
-                            upper = c(1000, 2000, max(data$Vcmax) + 1,
-                                      max(data$Tleaf) + 1),
+                            upper = c(1000, 2000, max(data[!is.na(data$Vcmax), ]$Vcmax) + 1,
+                                      max(data[!is.na(data$Vcmax), ]$Tleaf) + 1),
                             control = nls.control(maxiter = 100)),
                       error = function(e) paste(NA)
     )
@@ -72,12 +95,15 @@ fit_topt_VJ <- function(data,
                                 error = function(e) paste(NA))
     Vcmax_fm$residual[i] <- tryCatch(sum(abs(model$m$resid())),
                                      error = function(e) paste(NA))
+    Vcmax_fm$BIC[i] <- tryCatch(BIC(model),
+                                     error = function(e) paste(NA))
   }
   Vcmax_fm$Ea <- as.double(Vcmax_fm$Ea)
   Vcmax_fm$Hd <- as.double(Vcmax_fm$Hd)
   Vcmax_fm$kopt <- as.double(Vcmax_fm$kopt)
   Vcmax_fm$Topt <- as.double(Vcmax_fm$Topt)
   Vcmax_fm$residual <- as.double(Vcmax_fm$residual)
+  Vcmax_fm$BIC <- as.double(Vcmax_fm$BIC)
   Vcmax_fm <- Vcmax_fm[is.na(Vcmax_fm$residual) == FALSE, ]
   Vcmax_fm <- Vcmax_fm[Vcmax_fm$residual == min(Vcmax_fm$residual), ]
   T_model <- seq(from = min(data$Tleaf),
@@ -91,28 +117,36 @@ fit_topt_VJ <- function(data,
   
   ##END VCMAX
   
-  Jmax_m <- nlsLM(data = data, 
+  Jmax_m <- nlsLM(data = data[!is.na(data$Jmax), ], 
                   Jmax ~ j25 * arrhenius(Ea,
                                          Tleaf = Tleaf),
                   start = list(j25 = 1, Ea = 1),
                   control = nls.control(maxiter = 100)
   )
   
+  arrhenius_out$Parameter[2] <- "Jmax"
+  arrhenius_out$k25[2] <- coef(Jmax_m)[1]
+  arrhenius_out$Ea[2] <- coef(Jmax_m)[2]
+  arrhenius_out$Residual[2] <- sum(abs(Jmax_m$m$resid()))
+  arrhenius_out$BIC[2] <- BIC(Jmax_m)
+  
   Jmax_fm <- as.data.frame(cbind(rep(0, 1000),
                                  rep(0, 1000),
                                  rep(0, 1000),
                                  rep(0, 1000),
                                  rep(0, 1000),
+                                 rep(0, 1000),
                                  rep("Jmax", 1000)))
-  colnames(Jmax_fm) <- c("Ea", "Hd", "kopt", "Topt", "residual", "Parameter")
+  colnames(Jmax_fm) <- c("Ea", "Hd", "kopt", "Topt", "residual", "BIC", "Parameter")
   Jmax_fm$Ea <- as.double(Jmax_fm$Ea)
   Jmax_fm$Hd <- as.double(Jmax_fm$Hd)
   Jmax_fm$kopt <- as.double(Jmax_fm$kopt)
   Jmax_fm$Topt <- as.double(Jmax_fm$Topt)
   Jmax_fm$residual <- as.double(Jmax_fm$residual)
+  Jmax_fm$BIC <- as.double(Jmax_fm$BIC)
   for(i in 1:1000){
     model <- NULL
-    model <- tryCatch(nlsLM(data = data, 
+    model <- tryCatch(nlsLM(data = data[!is.na(data$Jmax), ], 
                             Jmax ~ toptfit(Ea,
                                            Hd,
                                            kopt,
@@ -120,11 +154,11 @@ fit_topt_VJ <- function(data,
                                            Tleaf = Tleaf),
                             start = list(Ea = coef(Jmax_m)[[2]],
                                          Hd = i,
-                                         kopt = max(data$Jmax),
-                                         Topt = max(data$Tleaf)),
+                                         kopt = max(data[!is.na(data$Jmax), ]$Jmax),
+                                         Topt = max(data[!is.na(data$Jmax), ]$Tleaf)),
                             lower = c(0, 0, 0, 0),
-                            upper = c(1000, 3000, max(data$Jmax) + 1,
-                                      max(data$Tleaf) + 1),
+                            upper = c(1000, 3000, max(data[!is.na(data$Jmax), ]$Jmax) + 1,
+                                      max(data[!is.na(data$Jmax), ]$Tleaf) + 1),
                             control = nls.control(maxiter = 100)),
                       error = function(e) paste(NA)
     )
@@ -138,12 +172,15 @@ fit_topt_VJ <- function(data,
                                error = function(e) paste(NA))
     Jmax_fm$residual[i] <- tryCatch(sum(abs(model$m$resid())),
                                     error = function(e) paste(NA))
+    Jmax_fm$BIC[i] <- tryCatch(BIC(model),
+                                   error = function(e) paste(NA))
   }
   Jmax_fm$Ea <- as.double(Jmax_fm$Ea)
   Jmax_fm$Hd <- as.double(Jmax_fm$Hd)
   Jmax_fm$kopt <- as.double(Jmax_fm$kopt)
   Jmax_fm$Topt <- as.double(Jmax_fm$Topt)
   Jmax_fm$residual <- as.double(Jmax_fm$residual)
+  Jmax_fm$BIC <- as.double(Jmax_fm$BIC)
   Jmax_fm <- Jmax_fm[is.na(Jmax_fm$residual) == FALSE, ]
   Jmax_fm <- Jmax_fm[Jmax_fm$residual == min(Jmax_fm$residual), ]
   T_model <- seq(from = min(data$Tleaf),
@@ -157,7 +194,9 @@ fit_topt_VJ <- function(data,
   
   outputs[[1]] <- rbind(Vcmax_fm, Jmax_fm)
   
-  outputs[[2]] <- ggplot(data, aes(x = Tleaf, y = Vcmax))+
+  outputs[[2]] <- arrhenius_out
+  
+  outputs[[3]] <- ggplot(data, aes(x = Tleaf, y = Vcmax))+
     ggtitle(label = title)+
     labs(x = expression("Tleaf (Celsius)"),
          y = expression("Jmax or Vcmax ("*mu*mol~m^{-2}~s^{-1}*")"))+
@@ -189,5 +228,7 @@ fit_topt_VJ <- function(data,
           legend.key = element_blank(),
           legend.position = c(0.15, 0.8),
           text = element_text(size = 14))
+  names(outputs) <- c("Topt_Model", "Arrhenius_Model", "Graph")
+  
   return(outputs)
 }

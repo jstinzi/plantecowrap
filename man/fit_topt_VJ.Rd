@@ -5,7 +5,7 @@
 \title{Fitting the temperature responses of Vcmax and Jmax}
 \usage{
 fit_topt_VJ(data, varnames = list(Vcmax = "Vcmax", Jmax = "Jmax", Tleaf =
-  "Tleaf"), title)
+  "Tleaf"), title = NULL, limit_jmax = 1e+05, limit_vcmax = 1e+05)
 }
 \arguments{
 \item{data}{Dataframe containing Vcmax, Jmax, and Tleaf}
@@ -13,6 +13,10 @@ fit_topt_VJ(data, varnames = list(Vcmax = "Vcmax", Jmax = "Jmax", Tleaf =
 \item{varnames}{Variable names}
 
 \item{title}{Graph title, usually a group name}
+
+\item{limit_jmax}{Upper limit to Jmax values for fitting}
+
+\item{limit_vcmax}{Upper limit to Vcmax values for fitting}
 }
 \value{
 fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and
