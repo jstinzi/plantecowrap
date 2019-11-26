@@ -4,7 +4,7 @@
 \alias{acisummary}
 \title{Extracts coefficients from fitacis2}
 \usage{
-acisummary(data, group1, group2, group3, fits)
+acisummary(data, group1, group2 = NA, group3 = NA, fits)
 }
 \arguments{
 \item{data}{data frame with A/Ci curves}
