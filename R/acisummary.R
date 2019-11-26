@@ -29,12 +29,37 @@ acisummary <- function(data,
   colnames(data_output) <- "ID"
   #Prepare groups to extract variables by group
   data$group1 <- data[,group1]
-  data$group2 <- data[,group2]
-  data$group3 <- data[,group3]
+  
+  if(!is.na(group2)){
+    data$group2 <- data[,group2]
+  }
+  
+  if(!is.na(group3)){
+    data$group3 <- data[,group3]
+  }
+  
+  if(!is.na(group2) & !is.na(group3)){
+    data <- unite(data, col = "group",
+                  c("group1", "group2", "group3"),
+                  sep = "_")
+  } else{
+    if(!is.na(group2) & is.na(group3)){
+      data <- unite(data, col = "group",
+                    c("group1", "group2"),
+                    sep = "_")
+    } else {
+      data$group <- data$group1
+    }
+  }
+  
+  
+  #data$group1 <- data[,group1]
+  #data$group2 <- data[,group2]
+  #data$group3 <- data[,group3]
   #Create one grouping variable
-  data <- unite(data, col = "group",
-                c("group1", "group2", "group3"),
-                sep = "_")
+  #data <- unite(data, col = "group",
+  #              c("group1", "group2", "group3"),
+  #              sep = "_")
   #Split dataframe for list for ease of extraction
   data <- split(data, data$group)
   #Extract variables from curve fit
