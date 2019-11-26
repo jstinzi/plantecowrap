@@ -4,8 +4,13 @@
 \alias{fit_topt_VJ}
 \title{Fitting the temperature responses of Vcmax and Jmax}
 \usage{
-fit_topt_VJ(data, varnames = list(Vcmax = "Vcmax", Jmax = "Jmax", Tleaf =
-  "Tleaf"), title = NULL, limit_jmax = 1e+05, limit_vcmax = 1e+05)
+fit_topt_VJ(
+  data,
+  varnames = list(Vcmax = "Vcmax", Jmax = "Jmax", Tleaf = "Tleaf"),
+  title = NULL,
+  limit_jmax = 1e+05,
+  limit_vcmax = 1e+05
+)
 }
 \arguments{
 \item{data}{Dataframe containing Vcmax, Jmax, and Tleaf}

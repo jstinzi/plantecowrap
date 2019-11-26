@@ -44,8 +44,8 @@
 #'
 fitacis2 <- function(data,
                      group1,
-                     group2,
-                     group3,
+                     group2 = NA,
+                     group3 = NA,
                      gm25 = 0.08701,
                      Egm = 47.650,
                      K25 = 718.40, #at 100 kPa, 21% O2
@@ -68,12 +68,29 @@ fitacis2 <- function(data,
                                      PPFD = "PARi", 
                                      Rd = "Rd")){
   data$group1 <- data[,group1]
-  data$group2 <- data[,group2]
-  data$group3 <- data[,group3]
   
+  if(!is.na(group2)){
+  data$group2 <- data[,group2]
+  }
+  
+  if(!is.na(group3)){
+  data$group3 <- data[,group3]
+  }
+  
+  if(!is.na(group2) & !is.na(group3)){
   data <- unite(data, col = "group",
                 c("group1", "group2", "group3"),
                 sep = "_")
+  } else{
+    if(!is.na(group2) & is.na(group3)){
+      data <- unite(data, col = "group",
+                    c("group1", "group2"),
+                    sep = "_")
+    } else {
+      data$group <- data$group1
+    }
+  }
+  
   
   data <- split(data, data$group)
   fits <- as.list(1:length(data))

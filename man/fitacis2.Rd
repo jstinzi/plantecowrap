@@ -4,12 +4,29 @@
 \alias{fitacis2}
 \title{Fit A-Ci curves with custom kinetics}
 \usage{
-fitacis2(data, group1, group2, group3, gm25 = 0.08701, Egm = 47.65,
-  K25 = 718.4, Ek = 65.50828, Gstar25 = 42.75, Egamma = 37.83,
-  fitmethod, fitTPU, Tcorrect, useRd = FALSE, citransition = NULL,
-  alphag = 0, PPFD = NULL, Tleaf = NULL, alpha = 0.24,
-  theta = 0.85, varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci =
-  "Ci", PPFD = "PARi", Rd = "Rd"))
+fitacis2(
+  data,
+  group1,
+  group2 = NA,
+  group3 = NA,
+  gm25 = 0.08701,
+  Egm = 47.65,
+  K25 = 718.4,
+  Ek = 65.50828,
+  Gstar25 = 42.75,
+  Egamma = 37.83,
+  fitmethod,
+  fitTPU,
+  Tcorrect,
+  useRd = FALSE,
+  citransition = NULL,
+  alphag = 0,
+  PPFD = NULL,
+  Tleaf = NULL,
+  alpha = 0.24,
+  theta = 0.85,
+  varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci = "Ci", PPFD = "PARi", Rd = "Rd")
+)
 }
 \arguments{
 \item{data}{data frame with A/Ci curves}
