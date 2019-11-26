@@ -21,8 +21,8 @@
 #'
 acisummary <- function(data,
                        group1,
-                       group2,
-                       group3,
+                       group2 = NA,
+                       group3 = NA,
                        fits){
   #Create a dataframe for outputs
   data_output <- as.data.frame(1:length(fits))
