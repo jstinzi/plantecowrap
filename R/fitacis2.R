@@ -52,9 +52,9 @@ fitacis2 <- function(data,
                      Ek = 65.50828,
                      Gstar25 = 42.75,
                      Egamma = 37.83,
-                     fitmethod,
-                     fitTPU,
-                     Tcorrect,
+                     fitmethod = "bilinear",
+                     fitTPU = TRUE,
+                     Tcorrect = FALSE,
                      useRd = FALSE,
                      citransition = NULL,
                      alphag = 0,
@@ -66,8 +66,10 @@ fitacis2 <- function(data,
                                      Tleaf = "Tleaf", 
                                      Ci = "Ci",
                                      PPFD = "PARi", 
-                                     Rd = "Rd")){
+                                     Rd = "Rd",
+                                     Press = "Press")){
   data$group1 <- data[,group1]
+  data$Press <- data[,varnames$Press]
   
   if(!is.na(group2)){
   data$group2 <- data[,group2]

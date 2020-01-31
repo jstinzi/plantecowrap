@@ -15,9 +15,9 @@ fitacis2(
   Ek = 65.50828,
   Gstar25 = 42.75,
   Egamma = 37.83,
-  fitmethod,
-  fitTPU,
-  Tcorrect,
+  fitmethod = "bilinear",
+  fitTPU = TRUE,
+  Tcorrect = FALSE,
   useRd = FALSE,
   citransition = NULL,
   alphag = 0,
@@ -25,7 +25,8 @@ fitacis2(
   Tleaf = NULL,
   alpha = 0.24,
   theta = 0.85,
-  varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci = "Ci", PPFD = "PARi", Rd = "Rd")
+  varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci = "Ci", PPFD = "PARi", Rd = "Rd",
+    Press = "Press")
 )
 }
 \arguments{
