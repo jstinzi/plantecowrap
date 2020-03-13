@@ -12,6 +12,7 @@ Load Packages
 ```{r}
 library(plantecowrap)
 library(ggplot2)
+library(tidyr)
 ```
 
 Create Example Dataset
@@ -53,7 +54,19 @@ data <- data.frame(cbind(A,
                          Press,
                          PPFD))
 
+data2 <- data.frame(cbind(A,
+                         Ci,
+                         Tleaf,
+                         Press,
+                         PPFD))
+data2$A <- data2$A * 2
+
 data$Treat <- as.character(Tleaf)
+data2$Treat <- as.character(Tleaf)
+data2 <- rbind(data, data2)
+data2$Block <- c(rep("a", nrow(data)),
+                 rep("b", nrow(data)))
+data2 <- unite(data2, col = "Grouping", c("Treat", "Block"), sep = "_")
 ```
 
 Fit ACi Curves then fit temperature responses
@@ -70,8 +83,57 @@ fits <- fitacis2(data = data,
                  fitmethod = "bilinear",
                  gm25 = 10000,
                  Egm = 0)
+#Get ACi outputs
 outputs <- acisummary(data, group1 = "Treat", fits = fits)
 
+#Fit temperature response
 tresp <- fit_topt_VJ(outputs)
 
+#See parameters
+tresp[[2]]
+
+#See plot
+tresp[[3]]
+
+```
+
+#Fitting of multiple temperature responses
+```{r}
+fits2 <- fitacis2(data = data2,
+                 varnames = list(ALEAF = "A",
+                                 Tleaf = "Tleaf",
+                                 Ci = "Ci",
+                                 PPFD = "PPFD",
+                                 Rd = "Rd",
+                                 Press = "Press"),
+                 group1 = "Grouping",
+                 fitTPU = FALSE,
+                 fitmethod = "bilinear",
+                 gm25 = 10000,
+                 Egm = 0)
+#Get ACi outputs
+outputs <- acisummary(data2, group1 = "Grouping", fits = fits2)
+
+outputs <- separate(outputs, col = "ID", into = c("Treat", "Block"), sep = "_")
+
+tresps <- fit_topt_VJs(data = outputs,
+                       group = "Block")
+
+#Get parameters
+pars <- get_t_pars(tresps)
+
+#Get graphs
+graphs <- get_t_graphs(tresps)
+
+#Print graphs (uncomment to run)
+#print_graphs(graphs)
+
+#View parameters
+pars
+
+#View graphs
+#Note that the second graph is strange because A was simply multiplied by
+#2 for the sample dataset
+graphs[[1]]
+graphs[[2]]
 ```
