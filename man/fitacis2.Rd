@@ -38,39 +38,60 @@ fitacis2(
 
 \item{group3}{grouping variable 3}
 
-\item{gm25}{mesophyll conductance at 25C}
+\item{gm25}{mesophyll conductance at 25C in mol m-2 s-1 bar-1}
 
 \item{Egm}{activation energy of mesophyll conductance in kJ/mol}
 
-\item{K25}{Km at 25C}
+\item{K25}{Km at 25C in umol mol-1 (equivalent to ubar bar-1)}
 
 \item{Ek}{activation energy of Km in kJ/mol}
 
-\item{Gstar25}{photorespiratory CO2 compensation point at 25 Celsius in ppm}
+\item{Gstar25}{photorespiratory CO2 compensation point at 25 Celsius in 
+umol mol-1}
 
 \item{Egamma}{activation energy of GammaStar in kJ/mol}
 
-\item{fitmethod}{See ?fitaci in plantecophys}
+\item{fitmethod}{Set to either "bilinear" or "default". Default option
+in this package is "bilinear". See ?fitaci in plantecophys for more
+details.}
 
-\item{fitTPU}{See ?fitaci in plantecophys. Set to TRUE/FALSE}
+\item{fitTPU}{Should TPU limitations be fit? Set to TRUE/FALSE. See 
+?fitaci in plantecophys for more details.}
 
-\item{Tcorrect}{See ?fitaci in plantecophys. Default here is FALSE}
+\item{Tcorrect}{Should outputs be temperature corrected? Default here 
+is FALSESee ?fitaci in plantecophys for more details.}
 
-\item{useRd}{See ?fitaci in plantecophys}
+\item{useRd}{Should respiration be used? Default is FALSE. See ?fitaci 
+in plantecophys for more details.}
 
-\item{citransition}{See ?fitaci in plantecophys}
+\item{citransition}{Pre-specify Ci transition point? Default is FALSE.
+See ?fitaci in plantecophys for more details.}
 
-\item{alphag}{See ?fitaci in plantecophys}
+\item{alphag}{Fraction of respiratory glycolate carbon that is not returned
+to the chloroplast (von Caemmerer, 2000). If ACi curves show high-CO2
+decline, then this value should be > 0. See ?fitaci in plantecophys for 
+more details.}
 
-\item{PPFD}{See ?fitaci in plantecophys}
+\item{PPFD}{Light intensity? Can be retrieved from dataframe. Default is
+NULL. See ?fitaci in plantecophys for more details.}
 
-\item{Tleaf}{See ?fitaci in plantecophys}
+\item{Tleaf}{Leaf temperature? Can be retrieved from dataframe. Default is
+NULL. See ?fitaci in plantecophys for more details.}
 
-\item{alpha}{See ?fitaci in plantecophys}
+\item{alpha}{Quantum yield of CO2 assimilation. Default is 0.24. See 
+?fitaci in plantecophys for more details.}
 
-\item{theta}{See ?fitaci in plantecophys}
+\item{theta}{Curvature of the photosynthetic light response. Default is
+0.85. If light response has sharper transition, increase up to 1. If light
+response has shallower curves, decrease towards 0. See ?fitaci in 
+plantecophys for more details.}
 
-\item{varnames}{See ?fitaci in plantecophys}
+\item{varnames}{Variable names in your dataframe. ALEAF is net CO2
+assimilation in umol m-2 s-1, Tleaf is leaf temperature in Celsius, 
+Ci is intercellular CO2 concentration in umol mol-1, PPFD is light
+intensity in umol m-2 s-1, Rd is respiration rate in umol m-2 s-1, 
+and Press is atmospheric pressure in kPa. See ?fitaci in plantecophys 
+for more details.}
 }
 \value{
 fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf
@@ -82,6 +103,20 @@ fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf
         and 35 Celsius. Also note that this ALWAYS uses gm. To fit
         data on a "Ci-basis", set gm25 really high (e.g. 10000) and
         Egm to 0.
+        
+        REFERENCES
+        
+        Bernacchi CJ, Singsaas EL, Pimentel C, Portis AR, Long SP. 
+        2001. Improved temperature response functions for models of 
+        rubisco-limited photosynthesis. Plant Cell Environment 24:253-259.
+        
+        Bernacchi CJ, Portis AR, Nakano H, von Caemmerer S, Long SP. 2002.
+        Temperature response of mesophyll conductance. Implications for the
+        determination of rubisco enzyme kinetics and for limitations to 
+        photosynthesis in vivo. Plant Physiology 130:1992-1998.
+        
+        von Caemmerer S. 2000. Biochemical models of leaf photosynthesis. 
+        CSIRO Publishing, Collingwood.
 }
 \description{
 Fit A-Ci curves with custom kinetics

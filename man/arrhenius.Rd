@@ -2,7 +2,7 @@
 % Please edit documentation in R/arrhenius.R
 \name{arrhenius}
 \alias{arrhenius}
-\title{Fitting the Arrhenius temperature response model}
+\title{The Arrhenius temperature response equation}
 \usage{
 arrhenius(Ea, Tleaf)
 }
@@ -12,8 +12,10 @@ arrhenius(Ea, Tleaf)
 \item{Tleaf}{leaf temperature in Celsius}
 }
 \value{
-arrhenius is used to fit an exponential model
+arrhenius is an exponential model
+
+Arrhenius S. 1915. Quantitative laws in biological chemistry. Bell.
 }
 \description{
-Fitting the Arrhenius temperature response model
+The Arrhenius temperature response equation
 }

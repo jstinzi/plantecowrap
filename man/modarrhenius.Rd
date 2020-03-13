@@ -16,7 +16,13 @@ modarrhenius(Ea, Hd, dS, Tleaf)
 \item{Tleaf}{leaf temperature in Celsius}
 }
 \value{
-modarrhenius is used to fit a peaked model
+modarrhenius is used to fit a peaked Arrhenius model
+
+Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
+Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
+Wang K, Loutstau D. 2002. Temperature response of parameters of a
+biochemically based model of photosynthesis. II. A review of
+experimental data. Plant Cell Environ 25:1167-1179
 }
 \description{
 Fitting the peaked Arrhenius temperature response model

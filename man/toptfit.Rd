@@ -18,7 +18,13 @@ toptfit(Ea, Hd, kopt, Tleaf, Topt)
 \item{Topt}{optimum leaf temperature in Celsius}
 }
 \value{
-toptfit is used to fit a Topt model
+toptfit is the Topt temperature response model
+
+Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
+Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
+Wang K, Loutstau D. 2002. Temperature response of parameters of a
+biochemically based model of photosynthesis. II. A review of
+experimental data. Plant Cell Environ 25:1167-1179
 }
 \description{
 Fitting the Topt temperature response model

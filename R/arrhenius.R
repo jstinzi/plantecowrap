@@ -1,9 +1,11 @@
-#' Fitting the Arrhenius temperature response model
+#' The Arrhenius temperature response equation
 #'
 #' @param Ea activation energy in kJ/mol
 #' @param Tleaf leaf temperature in Celsius
 #'
-#' @return arrhenius is used to fit an exponential model
+#' @return arrhenius is an exponential model
+#' 
+#' Arrhenius S. 1915. Quantitative laws in biological chemistry. Bell.
 #' @export
 #'
 arrhenius <- function(Ea, Tleaf){

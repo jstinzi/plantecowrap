@@ -17,3 +17,13 @@ Please direct any questions or comments to me at:
 josephstinziano@gmail.com
 
 Or you can log an issue on the package webpage.
+
+References
+Duursma R. 2015. Plantecophys - an R package for analysing and
+modelling leaf gas exchange data. PLoS ONE 10:e0143346
+
+Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
+Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
+Wang K, Loutstau D. 2002. Temperature response of parameters of a
+biochemically based model of photosynthesis. II. A review of
+experimental data. Plant Cell Environ 25:1167-1179

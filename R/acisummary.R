@@ -11,8 +11,7 @@
 #' @importFrom stats coef
 #' @export
 #' 
-#' @examples 
-#' \dontrun{
+#' @examples \dontrun{
 #' data <- read.csv("mydata.csv")
 #' fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
 #' fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
@@ -27,17 +26,21 @@ acisummary <- function(data,
   #Create a dataframe for outputs
   data_output <- as.data.frame(1:length(fits))
   colnames(data_output) <- "ID"
+  
   #Prepare groups to extract variables by group
   data$group1 <- data[,group1]
   
+  #Double check if group2 is available
   if(!is.na(group2)){
     data$group2 <- data[,group2]
   }
   
+  #Double check if group3 is available
   if(!is.na(group3)){
     data$group3 <- data[,group3]
   }
   
+  #Assign group based on which groupings are used
   if(!is.na(group2) & !is.na(group3)){
     data <- unite(data, col = "group",
                   c("group1", "group2", "group3"),
@@ -52,16 +55,9 @@ acisummary <- function(data,
     }
   }
   
-  
-  #data$group1 <- data[,group1]
-  #data$group2 <- data[,group2]
-  #data$group3 <- data[,group3]
-  #Create one grouping variable
-  #data <- unite(data, col = "group",
-  #              c("group1", "group2", "group3"),
-  #              sep = "_")
   #Split dataframe for list for ease of extraction
   data <- split(data, data$group)
+  
   #Extract variables from curve fit
   for(i in 1:length(fits)){
     data_output$ID[i] <- names(fits)[i]
@@ -77,6 +73,7 @@ acisummary <- function(data,
     data_output$GammaStar[i] <- fits[[i]]$GammaStar
     data_output$gmeso[i] <- fits[[i]]$gmeso
   }
+  
   #Produce output
   return(data_output)
 }

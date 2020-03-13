@@ -1,7 +1,7 @@
 Package: plantecowrap
 Type: Package
 Title: Enhancing capabilities of plantecophys
-Version: 0.0.9000
+Version: 1.0.0
 Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
   role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7628-4201")),
   person("Demi", "Gamble", email = "Demi.Gamble@csiro.au", role = "aut"),
@@ -14,15 +14,17 @@ Description: Provides wrapping functions to add to capabilities to the
     temperature responses of mesophyll conductance, gamma star, and Km,
     as well as the ability to fit the Arrhenius and modified Arrhenius
     temperature response functions.
-License: CC BY-NC-SA 4.0
+License: MIT + file LICENSE
 Depends: R (>= 3.5.0)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
 Suggests: knitr,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
 Imports: 
+    ggplot2,
+    minpack.lm,
     plantecophys,
     tidyr
