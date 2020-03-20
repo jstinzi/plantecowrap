@@ -11,7 +11,8 @@ get_t_pars(data)
 }
 \value{
 get_t_pars returns temperature response parameters for
-Vcmax and Jmax from the group fitting process
+Vcmax and Jmax from the group fitting process. Output is a
+dataframe.
 }
 \description{
 Get temperature response parameters

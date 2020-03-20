@@ -11,7 +11,8 @@ print_graphs(data)
 }
 \value{
 print_graphs creates jpeg files from a list of graphs based on
-the graph names
+the graph names. Used in combination with get_t_graphs. Output is a 
+series of .jpeg files in the working directory.
 }
 \description{
 Printing graphs from a list of graphs

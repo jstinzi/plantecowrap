@@ -3,7 +3,8 @@
 #' @param data List of data output from fit_topt_VJs
 #'
 #' @return get_t_pars returns temperature response parameters for
-#' Vcmax and Jmax from the group fitting process
+#' Vcmax and Jmax from the group fitting process. Output is a
+#' dataframe.
 #' @export
 #' @examples \dontrun{
 #' data <- read.csv("AllMyACiCurves.csv")

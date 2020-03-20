@@ -13,15 +13,21 @@ fit_topt_VJ(
 )
 }
 \arguments{
-\item{data}{Dataframe containing Vcmax, Jmax, and Tleaf}
+\item{data}{Dataframe containing Vcmax (maximum rubisco carboxylation
+capacity in umol m-2 s-1), Jmax (maximum photosynthetic electron transport
+to CO2 fixation in umol m-2 s-1), and Tleaf (leaf temperature in Celsius)}
 
-\item{varnames}{Variable names}
+\item{varnames}{Variable names to account for different spellings of Vcmax,
+Jmax, and Tleaf.}
 
 \item{title}{Graph title, usually a group name}
 
-\item{limit_jmax}{Upper limit to Jmax values for fitting}
+\item{limit_jmax}{Upper limit to Jmax values for fitting. Defaults to
+100,000 umol m-2 s-1 as this is the "nonsense output" from fitaci. Ensures
+that these points are not fit.}
 
-\item{limit_vcmax}{Upper limit to Vcmax values for fitting}
+\item{limit_vcmax}{Upper limit to Vcmax values for fitting. Defaults to
+100,000 umol m-2 s-1.}
 }
 \value{
 fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and

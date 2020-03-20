@@ -10,8 +10,9 @@ get_t_graphs(data)
 \item{data}{List of data output from fit_topt_VJs}
 }
 \value{
-get_t_pars returns temperature response graphs for
-Vcmax and Jmax from the group fitting process
+get_t_graphs returns temperature response graphs for
+Vcmax and Jmax from the group fitting process. Output is a
+list of graphs.
 }
 \description{
 Get temperature response graphs

@@ -87,6 +87,8 @@ fits <- fitacis2(data = data,
 outputs <- acisummary(data, group1 = "Treat", fits = fits)
 
 #Fit temperature response
+#Note that this will return NA warnings because it runs through
+#1000 sets of starting parameters for Vcmax and Jmax
 tresp <- fit_topt_VJ(outputs)
 
 #See parameters
@@ -116,6 +118,8 @@ outputs <- acisummary(data2, group1 = "Grouping", fits = fits2)
 
 outputs <- separate(outputs, col = "ID", into = c("Treat", "Block"), sep = "_")
 
+#Note that this will return NA warnings because it runs through
+#1000 sets of starting parameters for Vcmax and Jmax
 tresps <- fit_topt_VJs(data = outputs,
                        group = "Block")
 

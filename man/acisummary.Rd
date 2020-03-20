@@ -7,7 +7,7 @@
 acisummary(data, group1, group2 = NA, group3 = NA, fits)
 }
 \arguments{
-\item{data}{data frame with A/Ci curves}
+\item{data}{data frame with A/Ci curve data}
 
 \item{group1}{grouping variable 1, must match fitacis2}
 

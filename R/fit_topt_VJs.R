@@ -1,10 +1,16 @@
 #' Fitting multiple temperature response curves
 #'
-#' @param data Dataframe with multiple temperature response curves
-#' @param group Grouping variable to use
-#' @param varnames Variable names.
-#' @param limit_jmax Upper limit to Jmax values for fitting
-#' @param limit_vcmax Upper limit to Vcmax values for fitting
+#' @param data Dataframe with multiple temperature response curves for Vcmax
+#' (maximum rubisco carboxylation capacity in umol m-2 s-1) and Jmax (maximum
+#' photosynthetic electron transport to CO2 fixation in umol m-2 s-1).
+#' @param group Grouping variable to use, e.g. Plant ID
+#' @param varnames Variable names. Reassigns variable names to account for
+#' different spellings of Vcmax, Jmax, and Tleaf
+#' @param limit_jmax Upper limit to Jmax values for fitting. Defaults to
+#' 100,000 umol m-2 s-1 as this is the "nonsense output" from fitaci. Ensures
+#' that these points are not fit.
+#' @param limit_vcmax Upper limit to Vcmax values for fitting. Defaults to
+#' 100,000 umol m-2 s-1.
 #'
 #' @return fit_topt_VJs fits multiple Vcmax and Jmax temperature responses
 #' using the optimum temperature response model from Medlyn et al. 2002.

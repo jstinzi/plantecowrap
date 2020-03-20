@@ -1,6 +1,6 @@
 #' Extracts coefficients from fitacis2
 #'
-#' @param data data frame with A/Ci curves
+#' @param data data frame with A/Ci curve data
 #' @param group1 grouping variable 1, must match fitacis2
 #' @param group2 grouping variable 2, must match fitacis2
 #' @param group3 grouping variable 3, must match fitacis2
@@ -61,16 +61,27 @@ acisummary <- function(data,
   #Extract variables from curve fit
   for(i in 1:length(fits)){
     data_output$ID[i] <- names(fits)[i]
+    #Leaf temperature in Celsius
     data_output$Tleaf[i] <- mean(data[[i]]$Tleaf)
+    #Atmospheric pressure in kPa
     data_output$Patm[i] <- mean(fits[[i]]$df$Patm)
+    #Vcmax in umol m-2 s-1
     data_output$Vcmax[i] <- coef(fits[[i]])[1]
+    #Jmax in umol m-2 s-1
     data_output$Jmax[i] <- coef(fits[[i]])[2]
+    #TPU in umol m-2 s-1
     data_output$TPU[i] <- coef(fits[[i]])[4]
+    #Rd in umol m-2 s-1
     data_output$Rd[i] <- coef(fits[[i]])[3]
+    #Vcmax/Jmax Ci transition point in umol mol-1
     data_output$Citrans1[i] <- fits[[i]]$Ci_transition
+    #Jmax/TPU Ci transition point in umol mol-1
     data_output$Citrans2[i] <- fits[[i]]$Ci_transition2
+    #Km in umol mol-1
     data_output$Km[i] <- fits[[i]]$Km
+    #GammaStar in umol mol-1
     data_output$GammaStar[i] <- fits[[i]]$GammaStar
+    #gmeso in mol m-2 s-1 bar-1
     data_output$gmeso[i] <- fits[[i]]$gmeso
   }
   

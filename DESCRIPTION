@@ -1,7 +1,7 @@
 Package: plantecowrap
 Type: Package
 Title: Enhancing capabilities of plantecophys
-Date: 2020-03-13
+Date: 2020-03-20
 Version: 1.0.0
 Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
   role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7628-4201")),
@@ -25,7 +25,7 @@ Suggests: knitr,
     testthat
 VignetteBuilder: knitr
 Imports: 
-    ggplot2,
-    minpack.lm,
+    ggplot2 (>= 3.2.1),
+    minpack.lm (>= 1.2-1),
     plantecophys,
-    tidyr
+    tidyr (>= 1.0.0)

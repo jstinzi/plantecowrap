@@ -7,19 +7,20 @@
 toptfit(Ea, Hd, kopt, Tleaf, Topt)
 }
 \arguments{
-\item{Ea}{activation energy in kJ/mol}
+\item{Ea}{activation energy in kJ mol-1}
 
-\item{Hd}{deactivation energy in kJ/mol}
+\item{Hd}{deactivation energy in kJ mol-1}
 
-\item{kopt}{optimum parameter value}
+\item{kopt}{parameter value at optimum temperature}
 
 \item{Tleaf}{leaf temperature in Celsius}
 
 \item{Topt}{optimum leaf temperature in Celsius}
 }
 \value{
-toptfit is the Topt temperature response model
+toptfit is the Topt temperature response model.
 
+REFERENCE
 Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
 Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
 Wang K, Loutstau D. 2002. Temperature response of parameters of a

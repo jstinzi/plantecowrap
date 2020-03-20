@@ -7,17 +7,18 @@
 modarrhenius(Ea, Hd, dS, Tleaf)
 }
 \arguments{
-\item{Ea}{activation energy in kJ/mol}
+\item{Ea}{activation energy in kJ mol-1}
 
-\item{Hd}{deactivation energy in kJ/mol}
+\item{Hd}{deactivation energy in kJ mol-1}
 
-\item{dS}{entropy parameter in kJ/mol}
+\item{dS}{entropy of deactivation in kJ mol-1}
 
 \item{Tleaf}{leaf temperature in Celsius}
 }
 \value{
-modarrhenius is used to fit a peaked Arrhenius model
+modarrhenius is used to fit a peaked Arrhenius model.
 
+REFERENCE
 Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
 Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
 Wang K, Loutstau D. 2002. Temperature response of parameters of a
