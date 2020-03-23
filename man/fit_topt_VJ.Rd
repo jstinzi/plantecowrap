@@ -46,7 +46,7 @@ Fitting the temperature responses of Vcmax and Jmax
 }
 \examples{
 \dontrun{
-Create Example Dataset
+#Create Example Dataset
 
 Tleaf <- seq(from = 10, to = 35, by = 5)
 Tleaf <- sort(rep(Tleaf, 15))
@@ -89,7 +89,6 @@ data$Treat <- as.character(Tleaf)
 
 
 #Fit ACi Curves then fit temperature responses
-
 fits <- fitacis2(data = data,
                  varnames = list(ALEAF = "A",
                                  Tleaf = "Tleaf",
@@ -102,8 +101,14 @@ fits <- fitacis2(data = data,
                  fitmethod = "bilinear",
                  gm25 = 10000,
                  Egm = 0)
+
+#Extract coefficients
 outputs <- acisummary(data, group1 = "Treat", fits = fits)
 
+#Fit temperature response
 tresp <- fit_topt_VJ(outputs)
+
+#View plot
+tresp[[3]]
 }
 }

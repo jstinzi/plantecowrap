@@ -10,8 +10,10 @@
 #' @export
 #' 
 #' @examples \dontrun{
+#' #Read in data
 #' data <- read.csv("AllMyACiCurves.csv")
 #' 
+#' #Fit ACi curves
 #' fits <- fitacis2(data,
 #'                  group1 = "COLUMNNAME",
 #'                  gm25 = 10000,#ensures curve is fit as ACi
@@ -59,6 +61,7 @@
 #' print_graphs(graphs)
 #' }
 print_graphs <- function(data){
+  #Print out each graph in the list to the current working directory
   for(i in 1:length(data)){
     jpeg(paste(names(data[[i]])[1], ".jpeg"), 
          height = 5, width = 5, res = 600, 

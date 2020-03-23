@@ -7,8 +7,10 @@
 #' dataframe.
 #' @export
 #' @examples \dontrun{
+#' #Read in data
 #' data <- read.csv("AllMyACiCurves.csv")
 #' 
+#' #Fit ACi curves
 #' fits <- fitacis2(data,
 #'                  group1 = "COLUMNNAME",
 #'                  gm25 = 10000,#ensures curve is fit as ACi
@@ -52,11 +54,18 @@
 #' pars <- get_t_pars(out)
 #' }
 get_t_pars <- function(data){
+  #Create empty list
   pars <- list()
+  
+  #Add parameters to list
   for(i in 1:length(data)){
     pars[[i]] <- data[[i]][[1]]
     pars[[i]]$ID <- names(data[i])
   }
+  
+  #Convert list to dataframe
   pars <- do.call("rbind", pars)
+  
+  #Return dataframe
   return(pars)
 }

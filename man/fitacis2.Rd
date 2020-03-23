@@ -85,7 +85,8 @@ NULL. Units are umol m-2 s-1. See ?fitaci in plantecophys for more details.}
 NULL. Units are Celsius. See ?fitaci in plantecophys for more details.}
 
 \item{alpha}{Quantum yield of CO2 assimilation. Default is 0.24. Units are
-umol CO2 fixed / umol photons. See  ?fitaci in plantecophys for more details.}
+umol CO2 fixed / umol incident photons. See  ?fitaci in plantecophys for 
+more details.}
 
 \item{theta}{Curvature of the photosynthetic light response. Default is
 0.85. If light response has sharper transition, increase up to 1. If light
@@ -127,7 +128,10 @@ Fit A-Ci curves with custom kinetics
 }
 \examples{
 \dontrun{
+#Read in data
 data <- read.csv("mydata.csv")
+
+#Fit ACi curves
 fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
 fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
 }

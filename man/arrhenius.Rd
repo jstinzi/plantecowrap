@@ -7,7 +7,7 @@
 arrhenius(Ea, Tleaf)
 }
 \arguments{
-\item{Ea}{activation energy in kJ/mol}
+\item{Ea}{activation energy in kJ mol-1}
 
 \item{Tleaf}{leaf temperature in Celsius}
 }

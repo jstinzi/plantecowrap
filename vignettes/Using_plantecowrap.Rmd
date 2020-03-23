@@ -71,6 +71,7 @@ data2 <- unite(data2, col = "Grouping", c("Treat", "Block"), sep = "_")
 
 Fit ACi Curves then fit temperature responses
 ```{r}
+#Fit ACi curves
 fits <- fitacis2(data = data,
                  varnames = list(ALEAF = "A",
                                  Tleaf = "Tleaf",
@@ -81,8 +82,9 @@ fits <- fitacis2(data = data,
                  group1 = "Treat",
                  fitTPU = FALSE,
                  fitmethod = "bilinear",
-                 gm25 = 10000,
+                 gm25 = 10000, #Allows fitting on an ACi rather than ACc-basis
                  Egm = 0)
+
 #Get ACi outputs
 outputs <- acisummary(data, group1 = "Treat", fits = fits)
 
@@ -101,6 +103,7 @@ tresp[[3]]
 
 #Fitting of multiple temperature responses
 ```{r}
+#Fit ACi curves
 fits2 <- fitacis2(data = data2,
                  varnames = list(ALEAF = "A",
                                  Tleaf = "Tleaf",
@@ -113,13 +116,16 @@ fits2 <- fitacis2(data = data2,
                  fitmethod = "bilinear",
                  gm25 = 10000,
                  Egm = 0)
+
 #Get ACi outputs
 outputs <- acisummary(data2, group1 = "Grouping", fits = fits2)
 
+#Split grouping variable
 outputs <- separate(outputs, col = "ID", into = c("Treat", "Block"), sep = "_")
 
 #Note that this will return NA warnings because it runs through
-#1000 sets of starting parameters for Vcmax and Jmax
+#1000 sets of starting parameters for Vcmax and Jmax. Some of
+#these sets will not work and return the NA warning.
 tresps <- fit_topt_VJs(data = outputs,
                        group = "Block")
 

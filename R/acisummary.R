@@ -12,9 +12,14 @@
 #' @export
 #' 
 #' @examples \dontrun{
+#' #Read in data
 #' data <- read.csv("mydata.csv")
+#' 
+#' #Run ACi curve fitting
 #' fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
 #' fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
+#' 
+#' #Extract coefficients
 #' outputs <- acisummary(data, group1 = "a", group2 = "b", group3 = "c", fits)
 #' }
 #'

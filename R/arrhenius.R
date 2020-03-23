@@ -1,6 +1,6 @@
 #' The Arrhenius temperature response equation
 #'
-#' @param Ea activation energy in kJ/mol
+#' @param Ea activation energy in kJ mol-1
 #' @param Tleaf leaf temperature in Celsius
 #'
 #' @return arrhenius is an exponential temperature response model. This

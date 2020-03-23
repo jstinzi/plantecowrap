@@ -37,7 +37,8 @@
 #' @param Tleaf Leaf temperature? Can be retrieved from dataframe. Default is
 #' NULL. Units are Celsius. See ?fitaci in plantecophys for more details.
 #' @param alpha Quantum yield of CO2 assimilation. Default is 0.24. Units are
-#' umol CO2 fixed / umol photons. See  ?fitaci in plantecophys for more details.
+#' umol CO2 fixed / umol incident photons. See  ?fitaci in plantecophys for 
+#' more details.
 #' @param theta Curvature of the photosynthetic light response. Default is
 #' 0.85. If light response has sharper transition, increase up to 1. If light
 #' response has shallower curves, decrease towards 0. See ?fitaci in 
@@ -75,7 +76,10 @@
 #' @export
 #' 
 #' @examples \dontrun{
+#' #Read in data
 #' data <- read.csv("mydata.csv")
+#' 
+#' #Fit ACi curves
 #' fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
 #' fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
 #' }

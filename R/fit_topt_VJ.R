@@ -41,7 +41,7 @@
 #' @export
 #' 
 #' @examples \dontrun{
-#' Create Example Dataset
+#' #Create Example Dataset
 #' 
 #' Tleaf <- seq(from = 10, to = 35, by = 5)
 #' Tleaf <- sort(rep(Tleaf, 15))
@@ -84,7 +84,6 @@
 #' 
 #' 
 #' #Fit ACi Curves then fit temperature responses
-#' 
 #' fits <- fitacis2(data = data,
 #'                  varnames = list(ALEAF = "A",
 #'                                  Tleaf = "Tleaf",
@@ -97,9 +96,15 @@
 #'                  fitmethod = "bilinear",
 #'                  gm25 = 10000,
 #'                  Egm = 0)
+#' 
+#' #Extract coefficients
 #' outputs <- acisummary(data, group1 = "Treat", fits = fits)
 #' 
+#' #Fit temperature response
 #' tresp <- fit_topt_VJ(outputs)
+#' 
+#' #View plot
+#' tresp[[3]]
 #' }
 fit_topt_VJ <- function(data,
                            varnames = list(Vcmax = "Vcmax",
@@ -112,6 +117,7 @@ fit_topt_VJ <- function(data,
   Jmax <- NULL
   Tleaf <- NULL
   Vcmax <- NULL
+  
   #Assign variable names
   data$Tleaf <- data[, varnames$Tleaf]
   data$Vcmax <- data[, varnames$Vcmax]

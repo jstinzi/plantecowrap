@@ -53,10 +53,15 @@
 #' graphs <- get_t_graphs(out)
 #' }
 get_t_graphs <- function(data){
+  #Create empty list
   graphs <- list()
+  
+  #Add plots to list
   for(i in 1:length(data)){
     graphs[[i]] <- data[[i]][3]
     names(graphs[[i]]) <- names(data[i])
   }
+  
+  #Return list
   return(graphs)
 }

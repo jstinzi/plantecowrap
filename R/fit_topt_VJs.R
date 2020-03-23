@@ -23,8 +23,10 @@
 #' experimental data. Plant Cell Environ 25:1167-1179
 #' @export
 #' @examples \dontrun{
+#' #Read in data
 #' data <- read.csv("AllMyACiCurves.csv")
 #' 
+#' #Fit ACi curves
 #' fits <- fitacis2(data,
 #'                  group1 = "COLUMNNAME",
 #'                  gm25 = 10000,#ensures curve is fit as ACi
