@@ -33,7 +33,6 @@ that these points are not fit.}
 fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and
 Jmax data. Note that Hd may max out at 3000 kJ mol-1 for Jmax and 2000 kJ
 mol-1 for Vcmax.
-
 REFERENCE
 Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
 Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
@@ -47,10 +46,8 @@ Fitting the temperature responses of Vcmax and Jmax
 \examples{
 \dontrun{
 #Create Example Dataset
-
 Tleaf <- seq(from = 10, to = 35, by = 5)
 Tleaf <- sort(rep(Tleaf, 15))
-
 Vcmax_start <- 90 * modarrhenius(Ea = 35, Hd = 220, dS = 0.3, Tleaf = Tleaf)
 Jmax_start <- 140 * modarrhenius(Ea = 80, Hd = 220, dS = 0.6, Tleaf = Tleaf)
 R_start <- 1.5 * arrhenius(Ea = 20, Tleaf = Tleaf)
@@ -62,32 +59,27 @@ Ci <- rep(c(75, 100, 150, 200, 250,
 A <- 1:90
 Vc <- 1:90
 Vj <- 1:90
-for(i in seq_along(A)){
-  Vc[i] <- (Vcmax_start[i] * (Ci[i] - GammaStar_start[i]) / 
+for (i in seq_along(A)) {
+  Vc[i] <- (Vcmax_start[i] * (Ci[i] - GammaStar_start[i]) /
               (Ci[i] + Km_start[i]))
-  Vj[i] <- (Jmax_start[i] * (Ci[i] - GammaStar_start[i]) / 
+  Vj[i] <- (Jmax_start[i] * (Ci[i] - GammaStar_start[i]) /
               (4 * Ci[i] + 8 * GammaStar_start[i]))
-  if(Vc[i] < 0){
+  if (Vc[i] < 0) {
     Vc[i] <- NA
   }
-  if(Vj[i] < 0){
+  if (Vj[i] < 0) {
     Vj[i] <- NA
   }
   A[i] <- min(Vc[i], Vj[i]) - R_start[i]
 }
-
 PPFD <- rep(2000, 90)
 Press <- rep(100, 90)
-
 data <- data.frame(cbind(A,
                          Ci,
                          Tleaf,
                          Press,
                          PPFD))
-
 data$Treat <- as.character(Tleaf)
-
-
 #Fit ACi Curves then fit temperature responses
 fits <- fitacis2(data = data,
                  varnames = list(ALEAF = "A",
@@ -101,13 +93,10 @@ fits <- fitacis2(data = data,
                  fitmethod = "bilinear",
                  gm25 = 10000,
                  Egm = 0)
-
 #Extract coefficients
 outputs <- acisummary(data, group1 = "Treat", fits = fits)
-
 #Fit temperature response
 tresp <- fit_topt_VJ(outputs)
-
 #View plot
 tresp[[3]]
 }

@@ -17,7 +17,6 @@ modarrhenius(Ea, Hd, dS, Tleaf)
 }
 \value{
 modarrhenius is used to fit a peaked Arrhenius model.
-
 REFERENCE
 Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
 Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,

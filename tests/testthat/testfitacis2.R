@@ -16,15 +16,15 @@ Ci <- rep(c(75, 100, 150, 200, 250,
 A <- 1:90
 Vc <- 1:90
 Vj <- 1:90
-for(i in seq_along(A)){
-  Vc[i] <- (Vcmax_start[i] * (Ci[i] - GammaStar_start[i]) / 
+for (i in seq_along(A)) {
+  Vc[i] <- (Vcmax_start[i] * (Ci[i] - GammaStar_start[i]) /
               (Ci[i] + Km_start[i]))
-  Vj[i] <- (Jmax_start[i] * (Ci[i] - GammaStar_start[i]) / 
+  Vj[i] <- (Jmax_start[i] * (Ci[i] - GammaStar_start[i]) /
               (4 * Ci[i] + 8 * GammaStar_start[i]))
-  if(Vc[i] < 0){
+  if (Vc[i] < 0) {
     Vc[i] <- NA
   }
-  if(Vj[i] < 0){
+  if (Vj[i] < 0) {
     Vj[i] <- NA
   }
   A[i] <- min(Vc[i], Vj[i]) - R_start[i]

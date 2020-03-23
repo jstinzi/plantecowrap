@@ -30,11 +30,11 @@ fitacis2(
 )
 }
 \arguments{
-\item{data}{data frame with A/Ci curves. Requires net CO2 assimilation 
+\item{data}{data frame with A/Ci curves. Requires net CO2 assimilation
 (Anet/Photo/ALEAF in umol m-2 s-1), leaf temperature (Tleaf in Celsius),
 intercellular CO2 concentration (Ci, in umol mol-1), incident irradiance
 on the leaf (PPFD/PARi in umol m-2 s-1), atmospheric pressure (Patm/Press
-in kPa), and (optional, set useRd = TRUE for this option) respiration 
+in kPa), and (optional, set useRd = TRUE for this option) respiration
 (Rd, in umol m-2 s-1).}
 
 \item{group1}{grouping variable 1, could be species, temperature, ID}
@@ -52,7 +52,7 @@ in umol mol-1 (equivalent to ubar bar-1)}
 
 \item{Ek}{activation energy of Kcair in kJ mol-1}
 
-\item{Gstar25}{photorespiratory CO2 compensation point at 25 Celsius in 
+\item{Gstar25}{photorespiratory CO2 compensation point at 25 Celsius in
 umol mol-1 (equivalent to ubar bar-1)}
 
 \item{Egamma}{activation energy of GammaStar in kJ mol-1}
@@ -61,21 +61,21 @@ umol mol-1 (equivalent to ubar bar-1)}
 in this package is "default". See ?fitaci in plantecophys for more
 details.}
 
-\item{fitTPU}{Should TPU limitations be fit? Set to TRUE/FALSE. See 
+\item{fitTPU}{Should TPU limitations be fit? Set to TRUE/FALSE. See
 ?fitaci in plantecophys for more details.}
 
-\item{Tcorrect}{Should outputs be temperature corrected? Default here 
+\item{Tcorrect}{Should outputs be temperature corrected? Default here
 is FALSE. See ?fitaci in plantecophys for more details.}
 
-\item{useRd}{Should respiration be used? Default is FALSE. See ?fitaci 
+\item{useRd}{Should respiration be used? Default is FALSE. See ?fitaci
 in plantecophys for more details.}
 
-\item{citransition}{Pre-specify Ci transition point? Units in umol mol-1 
+\item{citransition}{Pre-specify Ci transition point? Units in umol mol-1
 (ubar bar-1) Default is FALSE. See ?fitaci in plantecophys for more details.}
 
-\item{alphag}{Fraction of photorespiratory glycolate carbon that is not 
-returned to the chloroplast (von Caemmerer, 2000). If ACi curves show 
-high-CO2 decline, then this value should be > 0. See ?fitaci in plantecophys 
+\item{alphag}{Fraction of photorespiratory glycolate carbon that is not
+returned to the chloroplast (von Caemmerer, 2000). If ACi curves show
+high-CO2 decline, then this value should be > 0. See ?fitaci in plantecophys
 for more details.}
 
 \item{PPFD}{Light intensity? Can be retrieved from dataframe. Default is
@@ -85,42 +85,39 @@ NULL. Units are umol m-2 s-1. See ?fitaci in plantecophys for more details.}
 NULL. Units are Celsius. See ?fitaci in plantecophys for more details.}
 
 \item{alpha}{Quantum yield of CO2 assimilation. Default is 0.24. Units are
-umol CO2 fixed / umol incident photons. See  ?fitaci in plantecophys for 
+umol CO2 fixed / umol incident photons. See  ?fitaci in plantecophys for
 more details.}
 
 \item{theta}{Curvature of the photosynthetic light response. Default is
 0.85. If light response has sharper transition, increase up to 1. If light
-response has shallower curves, decrease towards 0. See ?fitaci in 
+response has shallower curves, decrease towards 0. See ?fitaci in
 plantecophys for more details.}
 
 \item{varnames}{Variable names in your dataframe. ALEAF is net CO2
-assimilation in umol m-2 s-1, Tleaf is leaf temperature in Celsius, 
+assimilation in umol m-2 s-1, Tleaf is leaf temperature in Celsius,
 Ci is intercellular CO2 concentration in umol mol-1, PPFD is light
-intensity in umol m-2 s-1, Rd is respiration rate in umol m-2 s-1, 
-and Press is atmospheric pressure in kPa. See ?fitaci in plantecophys 
+intensity in umol m-2 s-1, Rd is respiration rate in umol m-2 s-1,
+and Press is atmospheric pressure in kPa. See ?fitaci in plantecophys
 for more details.}
 }
 \value{
 fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf.
-Output matches the fitacis function from plantecophys. Notethat the 
-temperature response function of Km is derived from the temperature 
-responses of Ko and Kc in Bernacchi et al.2001, as is the GammaStar 
-temperature response defaults. The gm defaults are from Bernacchi et 
-al. 2002 fitted between 1and 35 Celsius. Also note that this ALWAYS 
-uses gm. To fitdata on a "Ci-basis", set gm25 really high (e.g. 
-10000 mol m-2 s-1 bar-1) and Egm to 0 kJ mol-1. 
-        
+Output matches the fitacis function from plantecophys. Notethat the
+temperature response function of Km is derived from the temperature
+responses of Ko and Kc in Bernacchi et al.2001, as is the GammaStar
+temperature response defaults. The gm defaults are from Bernacchi et
+al. 2002 fitted between 1and 35 Celsius. Also note that this ALWAYS
+uses gm. To fitdata on a "Ci-basis", set gm25 really high (e.g.
+10000 mol m-2 s-1 bar-1) and Egm to 0 kJ mol-1.
 REFERENCES
-Bernacchi CJ, Singsaas EL, Pimentel C, Portis AR, Long SP. 
-2001. Improved temperature response functions for models of 
+Bernacchi CJ, Singsaas EL, Pimentel C, Portis AR, Long SP.
+2001. Improved temperature response functions for models of
 rubisco-limited photosynthesis. Plant Cell Environment 24:253-259.
-        
 Bernacchi CJ, Portis AR, Nakano H, von Caemmerer S, Long SP. 2002.
 Temperature response of mesophyll conductance. Implications for the
-determination of rubisco enzyme kinetics and for limitations to 
+determination of rubisco enzyme kinetics and for limitations to
 photosynthesis in vivo. Plant Physiology 130:1992-1998.
-        
-von Caemmerer S. 2000. Biochemical models of leaf photosynthesis. 
+von Caemmerer S. 2000. Biochemical models of leaf photosynthesis.
 CSIRO Publishing, Collingwood.
 }
 \description{
@@ -130,7 +127,6 @@ Fit A-Ci curves with custom kinetics
 \dontrun{
 #Read in data
 data <- read.csv("mydata.csv")
-
 #Fit ACi curves
 fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
 fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)

@@ -15,7 +15,6 @@ arrhenius(Ea, Tleaf)
 arrhenius is an exponential temperature response model. This
 function automatically converts temperature from Celsius to Kelvin for
 the calculation.
-
 REFERENCE
 Arrhenius S. 1915. Quantitative laws in biological chemistry. Bell.
 }

@@ -19,7 +19,6 @@ toptfit(Ea, Hd, kopt, Tleaf, Topt)
 }
 \value{
 toptfit is the Topt temperature response model.
-
 REFERENCE
 Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
 Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
