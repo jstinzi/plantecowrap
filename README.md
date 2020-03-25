@@ -1,4 +1,7 @@
 # plantecowrap
+
+[![Build Status](https://travis-ci.com/jstinzi/plantecowrap.svg?branch=master)](https://travis-ci.com/jstinzi/plantecowrap)
+
 {plantecowrap} provides a series of functions to enhance the utility of
 {plantecophys} by Duursma (2015). Specifically, it includes easy support
 for using customized temperature response functions of mesophyll
