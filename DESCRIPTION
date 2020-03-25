@@ -10,11 +10,12 @@ Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
   role = "aut"), person("Warren", "Conaty", email = "Warren.Conaty.csiro.au",
   role = "aut"))
 Maintainer: Joseph Stinziano <josephstinziano@gmail.com>
-Description: Provides wrapping functions to add to capabilities to the
-    plantecophys package by Remko Duursma. Key added capabilities include
-    temperature responses of mesophyll conductance, gamma star, and Km (Kcair),
-    as well as the ability to fit the Arrhenius and modified Arrhenius
-    temperature response functions.
+Description: Provides wrapping functions to add to capabilities to 'plantecophys' 
+    (Duursma, 2015, <doi:10.1371/journal.pone.0143346>). Key added capabilities 
+    include temperature responses of mesophyll conductance (gm, gmeso), apparent
+    Michaelis-Menten constant for rubisco carboxylation in air (Km, Kcair), and
+    photorespiratory CO2 compensation point (GammaStar) as well as the ability 
+    to fit the Arrhenius and modified Arrhenius temperature response functions.
 License: MIT + file LICENSE
 Depends: R (>= 3.5.0)
 Encoding: UTF-8
