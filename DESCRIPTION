@@ -1,6 +1,6 @@
 Package: plantecowrap
 Type: Package
-Title: Enhancing capabilities of plantecophys
+Title: Enhancing Capabilities of 'plantecophys'
 Date: 2020-03-25
 Version: 1.0.0
 Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
@@ -18,6 +18,8 @@ Description: Provides wrapping functions to add to capabilities to 'plantecophys
     curves for C3 plants. Includes the ability to fit the Arrhenius and modified 
     Arrhenius temperature response functions for maximum rubisco carboxylation
     rates (Vcmax) and maximum electron transport rates (Jmax).
+URL: https://github.com/jstinzi/plantecowrap
+BugReports: https://github.com/jstinzi/plantecowrap/issues
 License: MIT + file LICENSE
 Depends: R (>= 3.5.0),
     ggplot2 (>= 3.2.1),
