@@ -1,7 +1,7 @@
 Package: plantecowrap
 Type: Package
 Title: Enhancing capabilities of plantecophys
-Date: 2020-03-20
+Date: 2020-03-25
 Version: 1.0.0
 Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
   role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7628-4201")),
@@ -14,10 +14,16 @@ Description: Provides wrapping functions to add to capabilities to 'plantecophys
     (Duursma, 2015, <doi:10.1371/journal.pone.0143346>). Key added capabilities 
     include temperature responses of mesophyll conductance (gm, gmeso), apparent
     Michaelis-Menten constant for rubisco carboxylation in air (Km, Kcair), and
-    photorespiratory CO2 compensation point (GammaStar) as well as the ability 
-    to fit the Arrhenius and modified Arrhenius temperature response functions.
+    photorespiratory CO2 compensation point (GammaStar) for fitting A-Ci or A-Cc
+    curves for C3 plants. Includes the ability to fit the Arrhenius and modified 
+    Arrhenius temperature response functions for maximum rubisco carboxylation
+    rates (Vcmax) and maximum electron transport rates (Jmax).
 License: MIT + file LICENSE
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.5.0),
+    ggplot2 (>= 3.2.1),
+    minpack.lm (>= 1.2-1),
+    plantecophys (>= 1.4-4),
+    tidyr (>= 1.0.0)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
@@ -25,8 +31,3 @@ Suggests: knitr,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
-Imports: 
-    ggplot2 (>= 3.2.1),
-    minpack.lm (>= 1.2-1),
-    plantecophys,
-    tidyr (>= 1.0.0)

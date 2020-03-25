@@ -11,8 +11,6 @@ vignette: >
 Load Packages
 ```{r}
 library(plantecowrap)
-library(ggplot2)
-library(tidyr)
 ```
 
 Create Example Dataset
