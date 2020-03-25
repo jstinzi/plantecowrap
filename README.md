@@ -19,6 +19,7 @@ josephstinziano@gmail.com
 Or you can log an issue on the package webpage.
 
 References
+
 Duursma R. 2015. Plantecophys - an R package for analysing and
 modelling leaf gas exchange data. PLoS ONE 10:e0143346
 
