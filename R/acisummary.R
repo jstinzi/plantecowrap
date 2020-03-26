@@ -10,14 +10,21 @@
 #' @importFrom tidyr unite
 #' @importFrom stats coef
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' #Read in data
-#' data <- read.csv("mydata.csv")
+#' data <- read.csv(system.file("extdata", "example_2.csv",
+#' package = "plantecowrap"), stringsAsFactors = FALSE)
 #' #Run ACi curve fitting
-#' fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
+#' fits <- fitacis2(data, group1 = "Grouping",
+#' varnames = list(ALEAF = "A",
+#'                 Tleaf = "Tleaf",
+#'                 Ci = "Ci",
+#'                 PPFD = "PPFD",
+#'                 Rd = "Rd",
+#'                 Press = "Press"),
 #' fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
 #' #Extract coefficients
-#' outputs <- acisummary(data, group1 = "a", group2 = "b", group3 = "c", fits)
+#' outputs <- acisummary(data, group1 = "Grouping", fits = fits)
 #' }
 #'
 acisummary <- function(data,

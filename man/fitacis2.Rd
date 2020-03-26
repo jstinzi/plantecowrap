@@ -102,7 +102,7 @@ for more details.}
 }
 \value{
 fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf.
-Output matches the fitacis function from plantecophys. Notethat the
+Output matches the fitacis function from plantecophys. Note that the
 temperature response function of Km is derived from the temperature
 responses of Ko and Kc in Bernacchi et al.2001, as is the GammaStar
 temperature response defaults. The gm defaults are from Bernacchi et
@@ -124,11 +124,18 @@ CSIRO Publishing, Collingwood.
 Fit A-Ci curves with custom kinetics
 }
 \examples{
-\dontrun{
+\donttest{
 #Read in data
-data <- read.csv("mydata.csv")
-#Fit ACi curves
-fits <- fitacis2(data, group1 = "a", group2 = "b", group3 = "c",
+data <- read.csv(system.file("extdata", "example_2.csv",
+package = "plantecowrap"), stringsAsFactors = FALSE)
+#Run ACi curve fitting
+fits <- fitacis2(data, group1 = "Grouping",
+varnames = list(ALEAF = "A",
+                Tleaf = "Tleaf",
+                Ci = "Ci",
+                PPFD = "PPFD",
+                Rd = "Rd",
+                Press = "Press"),
 fitmethod = "bilinear", fitTPU = TRUE, Tcorrect = FALSE)
 }
 

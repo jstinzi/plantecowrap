@@ -2,14 +2,21 @@
 
 [![Build Status](https://travis-ci.com/jstinzi/plantecowrap.svg?branch=master)](https://travis-ci.com/jstinzi/plantecowrap)
 
-{plantecowrap} provides a series of functions to enhance the utility of
-{plantecophys} by Duursma (2015). Specifically, it includes easy support
-for using customized temperature response functions of mesophyll
-conductance (gm), photorespiratory CO2 compensation points (GammaStar),
-and Michaelis-Menten kinetics of rubisco (Km in 21% O2, Kcair, apparent
-Km in 21% O2). As well, the package contains a series of functions to fit 
-temperature responses of Vcmax and Jmax using the modified Arrhenius model 
-containing Topt as found in Medlyn et al. (2002).
+{plantecowrap} Provides wrapping functions to add to capabilities to 'plantecophys' 
+(Duursma, 2015, <doi:10.1371/journal.pone.0143346>). Key added capabilities 
+include temperature responses of mesophyll conductance (gm, gmeso), apparent 
+Michaelis-Menten constant for rubisco carboxylation in air (Km, Kcair),and
+photorespiratory CO2 compensation point (GammaStar) for fitting A-Ci or A-Cc
+curves for C3 plants (for temperature responses of gm, Km, & GammaStar,  see 
+Bernacchi et al., 2002, <doi:10.1104/pp.008250>; for theory on fitting A-Ci 
+or A-Cc curves, see Farquhar et al., 1980; <doi:10.1007/BF00386231>, von 
+Caemmerer, 2000, ISBN:064306379X; Ethier & Livingston, 2004 
+<doi:10.1111/j.1365-3040.2004.01140.x>; and Gu et al., 2010, 
+<doi:10.1111/j.1365-3040.2010.02192.x>). Includes the ability to fit the 
+Arrhenius and modified Arrhenius temperature response functions (see Medlyn 
+et al., 2002, <doi:10.1046/j.1365-3040.2002.00891.x>) for maximum rubisco 
+carboxylation rates (Vcmax) and maximum electron transport rates (Jmax) (see
+Farquhar et al., 1980; <doi:10.1007/BF00386231>).
 
 For information on how to use the code, please see the vignettes folder.
 To download this package, run the following code in R:
@@ -17,17 +24,7 @@ To download this package, run the following code in R:
 devtools::install_github("jstinzi/plantecowrap")
 
 Please direct any questions or comments to me at:
-josephstinziano@gmail.com
+<josephstinziano@gmail.com>
 
-Or you can log an issue on the package webpage.
-
-References
-
-Duursma R. 2015. Plantecophys - an R package for analysing and
-modelling leaf gas exchange data. PLoS ONE 10:e0143346
-
-Medlyn BE, Dreyer E, Ellsworth D, Forstreuter M, Harley PC,
-Kirschbaum MUF, Le Roux X, Montpied P, Strassemeyer J, Walcroft A,
-Wang K, Loutstau D. 2002. Temperature response of parameters of a
-biochemically based model of photosynthesis. II. A review of
-experimental data. Plant Cell Environ 25:1167-1179
+Or you can log an issue on the package webpage at:
+<https://github.com/jstinzi/plantecowrap/issues>.

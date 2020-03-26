@@ -5,3 +5,4 @@
 ^README\.md$
 ^NEWS\.md$
 ^\.travis\.yml$
+^CRAN-RELEASE$

@@ -1,28 +1,26 @@
 library(testthat)
 library(plantecowrap)
 context("Fitting multiple temperature responses")
-
-df <- data.frame(Vcmax = c(5.5, 20.5, 62.3, 90, 113.6, 142.3),
-                 Tleaf = c(10, 15, 20, 25, 30, 35),
-                 Jmax = c(16.6, 38.2, 79.8, 148.7, 273.7, 407.6))
-
-df2 <- data.frame(Vcmax = 2 * c(5.5, 20.5, 62.3, 90, 113.6, 142.3),
-                 Tleaf = c(10, 15, 20, 25, 30, 35),
-                 Jmax = 2 * c(16.6, 38.2, 79.8, 148.7, 273.7, 407.6))
-
-df2 <- rbind(df, df2)
-
-df2$Block <- c(rep("a", nrow(df)),
-                 rep("b", nrow(df)))
-
-tresps <- suppressWarnings(fit_topt_VJs(df2, group = "Block"))
-
-#Get parameters
+data <- read.csv(system.file("extdata", "example_2.csv",
+                              package = "plantecowrap"),
+                  stringsAsFactors = FALSE)
+fits2 <- fitacis2(data = data,
+                  varnames = list(ALEAF = "A",
+                                  Tleaf = "Tleaf",
+                                  Ci = "Ci",
+                                  PPFD = "PPFD",
+                                  Rd = "Rd",
+                                  Press = "Press"),
+                  group1 = "Grouping",
+                  fitTPU = FALSE,
+                  fitmethod = "bilinear",
+                  gm25 = 10000,
+                  Egm = 0)
+outputs <- acisummary(data, group1 = "Grouping", fits = fits2)
+outputs <- separate(outputs, col = "ID", into = c("Treat", "Block"), sep = "_")
+tresps <- suppressWarnings(fit_topt_VJs(outputs, group = "Block"))
 pars <- get_t_pars(tresps)
-
-#Get graphs
 graphs <- get_t_graphs(tresps)
-
 test_that("Outputs", {
   expect_is(object = tresps, class = "list")
   expect_is(object = tresps[[1]], class = "list")
@@ -36,9 +34,3 @@ test_that("Outputs", {
   expect_length(object = pars$Ea, 4)
   expect_length(object = graphs, 2)
 })
-
-unlink("df", recursive = FALSE)
-unlink("df2", recursive = FALSE)
-unlink("tresps", recursive = FALSE)
-unlink("pars", recursive = FALSE)
-unlink("graphs", recursive = FALSE)

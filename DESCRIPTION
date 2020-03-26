@@ -1,8 +1,8 @@
 Package: plantecowrap
 Type: Package
 Title: Enhancing Capabilities of 'plantecophys'
-Date: 2020-03-25
-Version: 1.0.0
+Date: 2020-03-26
+Version: 1.0.1
 Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
   role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7628-4201")),
   person("Demi", "Gamble", email = "Demi.Gamble@csiro.au", role = "aut"),
@@ -12,12 +12,19 @@ Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
 Maintainer: Joseph Stinziano <josephstinziano@gmail.com>
 Description: Provides wrapping functions to add to capabilities to 'plantecophys' 
     (Duursma, 2015, <doi:10.1371/journal.pone.0143346>). Key added capabilities 
-    include temperature responses of mesophyll conductance (gm, gmeso), apparent
-    Michaelis-Menten constant for rubisco carboxylation in air (Km, Kcair), and
+    include temperature responses of mesophyll conductance (gm, gmeso), apparent 
+    Michaelis-Menten constant for rubisco carboxylation in air (Km, Kcair),and
     photorespiratory CO2 compensation point (GammaStar) for fitting A-Ci or A-Cc
-    curves for C3 plants. Includes the ability to fit the Arrhenius and modified 
-    Arrhenius temperature response functions for maximum rubisco carboxylation
-    rates (Vcmax) and maximum electron transport rates (Jmax).
+    curves for C3 plants (for temperature responses of gm, Km, & GammaStar,  see 
+    Bernacchi et al., 2002, <doi:10.1104/pp.008250>; for theory on fitting A-Ci 
+    or A-Cc curves, see Farquhar et al., 1980; <doi:10.1007/BF00386231>, von 
+    Caemmerer, 2000, ISBN:064306379X; Ethier & Livingston, 2004 
+    <doi:10.1111/j.1365-3040.2004.01140.x>; and Gu et al., 2010, 
+    <doi:10.1111/j.1365-3040.2010.02192.x>). Includes the ability to fit the 
+    Arrhenius and modified Arrhenius temperature response functions (see Medlyn 
+    et al., 2002, <doi:10.1046/j.1365-3040.2002.00891.x>) for maximum rubisco 
+    carboxylation rates (Vcmax) and maximum electron transport rates (Jmax) (see
+    Farquhar et al., 1980; <doi:10.1007/BF00386231>).
 URL: https://github.com/jstinzi/plantecowrap
 BugReports: https://github.com/jstinzi/plantecowrap/issues
 License: MIT + file LICENSE
