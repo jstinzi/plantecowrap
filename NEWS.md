@@ -1,3 +1,14 @@
+# plantecowrap 1.0.2
+
+## Minor changes
+
+- Changed print_graphs() so that it shows the current working directory and
+asks the user's permission to save the files in the working directory. When
+permission is not granted (i.e. any response other than "Y"), the function
+simply states "Graphs not printed".
+- Added setwd(tempdir()) to the print_graphs() example and to the vignette
+'Using_plantecowrap.Rmd' to avoid writing to user filespace without permission
+
 # plantecowrap 1.0.1
 
 ## Minor changes

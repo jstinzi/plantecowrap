@@ -85,7 +85,5 @@ pars <- get_t_pars(out)
 #Let's get the graphs out into a list
 #You can get a graph using: graph[1]
 graphs <- get_t_graphs(out)
-#Print graphs out as jpegs into folder
-print_graphs(graphs)
 }
 }

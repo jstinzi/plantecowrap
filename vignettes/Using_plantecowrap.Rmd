@@ -87,9 +87,12 @@ pars <- get_t_pars(tresps)
 #Get graphs
 graphs <- get_t_graphs(tresps)
 
-#Print graphs (uncomment to run)
+#Print graphs
 #Note that this will print out the graphs to your working directory if run
-#print_graphs(graphs)
+#To print to a non-temporary working directory, remove the setwd() line below.
+setwd(tempdir())
+print_graphs(graphs)
+print("N")
 
 #View parameters
 pars

@@ -1,8 +1,8 @@
 Package: plantecowrap
 Type: Package
 Title: Enhancing Capabilities of 'plantecophys'
-Date: 2020-03-26
-Version: 1.0.1
+Date: 2020-03-30
+Version: 1.0.2
 Authors@R: c(person("Joseph", "Stinziano", email = "josephstinziano@gmail.com",
   role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7628-4201")),
   person("Demi", "Gamble", email = "Demi.Gamble@csiro.au", role = "aut"),
