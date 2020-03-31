@@ -109,6 +109,11 @@ temperature response defaults. The gm defaults are from Bernacchi et
 al. 2002 fitted between 1and 35 Celsius. Also note that this ALWAYS
 uses gm. To fitdata on a "Ci-basis", set gm25 really high (e.g.
 10000 mol m-2 s-1 bar-1) and Egm to 0 kJ mol-1.
+
+In some instances (e.g. very low stomatal conductance), fitacis2 will fail.
+In these cases, the output for that curve will be "Failed", rather than an
+A-Ci curve fit object.
+
 REFERENCES
 Bernacchi CJ, Singsaas EL, Pimentel C, Portis AR, Long SP.
 2001. Improved temperature response functions for models of

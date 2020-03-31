@@ -57,6 +57,11 @@
 #' al. 2002 fitted between 1and 35 Celsius. Also note that this ALWAYS
 #' uses gm. To fitdata on a "Ci-basis", set gm25 really high (e.g.
 #' 10000 mol m-2 s-1 bar-1) and Egm to 0 kJ mol-1.
+#' 
+#' In some instances (e.g. very low stomatal conductance), fitacis2 will fail.
+#' In these cases, the output for that curve will be "Failed", rather than an
+#' A-Ci curve fit object.
+#' 
 #' REFERENCES
 #' Bernacchi CJ, Singsaas EL, Pimentel C, Portis AR, Long SP.
 #' 2001. Improved temperature response functions for models of
@@ -162,7 +167,7 @@ fitacis2 <- function(data,
                          mean(data[[i]]$Tleaf + 273.15) *
                          0.008314))
     #Fit ACi curve
-    fits[[i]] <- fitaci(data[[i]],
+    fits[[i]] <- tryCatch(fitaci(data[[i]],
                         Patm = Patm,
                         varnames = varnames,
                         fitmethod = fitmethod,
@@ -177,7 +182,8 @@ fitacis2 <- function(data,
                         PPFD = PPFD,
                         Tleaf = Tleaf,
                         alpha = alpha,
-                        theta = theta)
+                        theta = theta),
+                        error = function(e) paste("Failed"))
     #Assign names
     names(fits)[i] <- data[[i]]$group[1]
   }

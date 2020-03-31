@@ -4,10 +4,13 @@
 \alias{print_graphs}
 \title{Printing graphs from a list of graphs}
 \usage{
-print_graphs(data, height = 5, width = 5, res = 600, units = "in")
+print_graphs(data, path = "./", height = 5, width = 5, res = 600, units = "in")
 }
 \arguments{
 \item{data}{List of graphs to output as .jpeg files}
+
+\item{path}{File path for printing out graphs. Defaults to current working
+directory}
 
 \item{height}{Height of output graphs}
 
@@ -66,10 +69,8 @@ out <- fit_topt_VJs(data = outputs,
 #Let's get the graphs out into a list
 #You can get a graph using: graph[1]
 graphs <- get_t_graphs(out)
-#Set temporary working directory for example
-setwd(tempdir())
 #Print graphs out as jpegs into folder
-print_graphs(graphs)
+print_graphs(graphs, path = tempdir())
 print("N")
 }
 }

@@ -18,7 +18,9 @@ acisummary(data, group1, group2 = NA, group3 = NA, fits)
 \item{fits}{list output from fitacis2}
 }
 \value{
-acisummary produces a data frame with A-Ci coefficients
+acisummary produces a data frame with A-Ci coefficients. If the
+input data have failed curve fits, these need to be removed before running
+acisummary().
 }
 \description{
 Extracts coefficients from fitacis2

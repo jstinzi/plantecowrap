@@ -1,6 +1,8 @@
 #' Printing graphs from a list of graphs
 #'
 #' @param data List of graphs to output as .jpeg files
+#' @param path File path for printing out graphs. Defaults to current working
+#' directory
 #' @param height Height of output graphs
 #' @param width Width of output graphs
 #' @param res Resolution of output graphs
@@ -52,19 +54,22 @@
 #' #Let's get the graphs out into a list
 #' #You can get a graph using: graph[1]
 #' graphs <- get_t_graphs(out)
-#' #Set temporary working directory for example
-#' setwd(tempdir())
 #' #Print graphs out as jpegs into folder
-#' print_graphs(graphs)
+#' print_graphs(graphs, path = tempdir())
 #' print("N")
 #' }
 print_graphs <- function(data,
+                         path = "./",
                          height = 5,
                          width = 5,
                          res = 600,
                          units = "in") {
   #Show user working directory
-  print(getwd())
+  if(path == "./") {
+    print(getwd())
+  } else {
+    print(path)
+  }
   #Ask user for permission to print the graphs to working directory
   user.prompt <- readline(prompt = 
   "Do you want to print graphs to your current working directory? Y/N: ")
@@ -73,7 +78,7 @@ print_graphs <- function(data,
   if (user.prompt == "Y") {
   #Print out each graph in the list to the current working directory
   for (i in 1:length(data)) {
-    jpeg(paste(names(data[[i]])[1], ".jpeg"),
+    jpeg(paste0(path, "/", names(data[[i]])[1], ".jpeg"),
          height = 5, width = 5, res = 600,
          units = "in")
     print(data[[i]])

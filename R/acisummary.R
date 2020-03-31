@@ -6,7 +6,9 @@
 #' @param group3 grouping variable 3, must match fitacis2
 #' @param fits list output from fitacis2
 #'
-#' @return acisummary produces a data frame with A-Ci coefficients
+#' @return acisummary produces a data frame with A-Ci coefficients. If the
+#' input data have failed curve fits, these need to be removed before running
+#' acisummary().
 #' @importFrom tidyr unite
 #' @importFrom stats coef
 #' @export

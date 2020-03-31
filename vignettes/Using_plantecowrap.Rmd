@@ -71,6 +71,8 @@ fits2 <- fitacis2(data = data2,
 
 #Get ACi outputs
 outputs <- acisummary(data2, group1 = "Grouping", fits = fits2)
+#NOTE: if fitacis2 fails to fit a curve, some output elements will be "Failed"
+#and need to be removed before acisummary() is run
 
 #Split grouping variable
 outputs <- separate(outputs, col = "ID", into = c("Treat", "Block"), sep = "_")
@@ -88,10 +90,9 @@ pars <- get_t_pars(tresps)
 graphs <- get_t_graphs(tresps)
 
 #Print graphs
-#Note that this will print out the graphs to your working directory if run
-#To print to a non-temporary working directory, remove the setwd() line below.
-setwd(tempdir())
-print_graphs(graphs)
+#To print to current working directory, set path = "./".
+print_graphs(graphs,
+             path = tempdir())
 print("N")
 
 #View parameters

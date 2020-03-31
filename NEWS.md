@@ -1,3 +1,17 @@
+# plantecowrap 1.0.3
+
+## Minor changes
+
+- Added path argument to print_graphs(), which allows user to specify where to
+print the graph files.
+- Changed the print_graphs() example and the 'Using_plantecowrap.Rmd' vignette
+so that path = tempdir()
+- Added tryCatch() to fitacis2() so that when an A-Ci curve fit fails, the
+output is "Failed". Notes on this effect have been added to descriptions of
+fitacis2(), acisummary(), and in 'Using_plantecowrap.Rmd' on lines 74-75. This
+change avoids an error where the entire function fails when there is one
+exception/poor dataset.
+
 # plantecowrap 1.0.2
 
 ## Minor changes

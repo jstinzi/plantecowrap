@@ -1,11 +1,14 @@
 ## Resubmission
 This is a resubmission. In this version we have:
-- Changed print_graphs() so that it shows the current working directory and
-asks the user's permission to save the files in the working directory. When
-permission is not granted (i.e. any response other than "Y"), the function
-simply states "Graphs not printed"
-- Added setwd(tempdir()) to the print_graphs() example and to the vignette
-'Using_plantecowrap.Rmd' to avoid writing to user filespace without permission
+* Added path argument to print_graphs(), which allows user to specify where to
+print the graph files.
+* Changed the print_graphs() example and the 'Using_plantecowrap.Rmd' vignette
+so that path = tempdir()
+* Added tryCatch() to fitacis2() so that when an A-Ci curve fit fails, the
+output is "Failed". Notes on this effect have been added to descriptions of
+fitacis2(), acisummary(), and in 'Using_plantecowrap.Rmd' on lines 74-75. This
+change avoids an error where the entire function fails when there is one
+exception/poor dataset.
 
 ## Test environments
 * local Windows 10, R 3.6.2
