@@ -4,21 +4,23 @@
 \alias{print_graphs}
 \title{Printing graphs from a list of graphs}
 \usage{
-print_graphs(data, path = "./", height = 5, width = 5, res = 600, units = "in")
+print_graphs(data, path, height = 5, width = 5, res = 600, units = "in", ...)
 }
 \arguments{
 \item{data}{List of graphs to output as .jpeg files}
 
-\item{path}{File path for printing out graphs. Defaults to current working
-directory}
+\item{path}{File path for printing out graphs. Use "./" to set to current
+working directory.}
 
-\item{height}{Height of output graphs}
+\item{height}{Height of output graphs. Defaults to 5.}
 
-\item{width}{Width of output graphs}
+\item{width}{Width of output graphs. Defaults to 5.}
 
-\item{res}{Resolution of output graphs}
+\item{res}{Resolution of output graphs. Defaults to 600.}
 
-\item{units}{Units of height and width}
+\item{units}{Units of height and width. Defaults to "in".}
+
+\item{...}{Further arguments, specifically for jpeg().}
 }
 \value{
 print_graphs creates jpeg files from a list of graphs based on
@@ -71,6 +73,5 @@ out <- fit_topt_VJs(data = outputs,
 graphs <- get_t_graphs(out)
 #Print graphs out as jpegs into folder
 print_graphs(graphs, path = tempdir())
-print("N")
 }
 }

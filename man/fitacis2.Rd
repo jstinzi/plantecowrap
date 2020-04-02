@@ -26,7 +26,8 @@ fitacis2(
   alpha = 0.24,
   theta = 0.85,
   varnames = list(ALEAF = "Photo", Tleaf = "Tleaf", Ci = "Ci", PPFD = "PARi", Rd = "Rd",
-    Press = "Press")
+    Press = "Press"),
+  ...
 )
 }
 \arguments{
@@ -99,6 +100,9 @@ Ci is intercellular CO2 concentration in umol mol-1, PPFD is light
 intensity in umol m-2 s-1, Rd is respiration rate in umol m-2 s-1,
 and Press is atmospheric pressure in kPa. See ?fitaci in plantecophys
 for more details.}
+
+\item{...}{Further arguments for plantecophys::fitaci(). See ?fitaci for
+details.}
 }
 \value{
 fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf.
@@ -107,7 +111,7 @@ temperature response function of Km is derived from the temperature
 responses of Ko and Kc in Bernacchi et al.2001, as is the GammaStar
 temperature response defaults. The gm defaults are from Bernacchi et
 al. 2002 fitted between 1and 35 Celsius. Also note that this ALWAYS
-uses gm. To fitdata on a "Ci-basis", set gm25 really high (e.g.
+uses gm. To fit data on a "Ci-basis", set gm25 really high (e.g.
 10000 mol m-2 s-1 bar-1) and Egm to 0 kJ mol-1.
 
 In some instances (e.g. very low stomatal conductance), fitacis2 will fail.

@@ -11,6 +11,8 @@
 #' that these points are not fit.
 #' @param limit_vcmax Upper limit to Vcmax values for fitting. Defaults to
 #' 100,000 umol m-2 s-1.
+#' @param ... Arguments to be passed on to minpack.lm::nlsLM via fit_topt_VJ().
+#' See ?nlsLM for details.
 #' @return fit_topt_VJs fits multiple Vcmax and Jmax temperature responses
 #' using the optimum temperature response model from Medlyn et al. 2002.
 #' REFERENCE
@@ -69,7 +71,8 @@ fit_topt_VJs <- function(data,
                                          Jmax = "Jmax",
                                          Tleaf = "Tleaf"),
                          limit_jmax = 100000,
-                         limit_vcmax = 100000) {
+                         limit_vcmax = 100000,
+                         ...) {
   #Assign group name
   data$group <- data[, group]
   #Split by group
@@ -82,7 +85,8 @@ fit_topt_VJs <- function(data,
                            varnames = varnames,
                            title = names(data[i]),
                            limit_jmax = limit_jmax,
-                           limit_vcmax = limit_vcmax)
+                           limit_vcmax = limit_vcmax,
+                           ...)
     #Assign names
     names(fits)[i] <- names(data[i])
   }

@@ -93,7 +93,6 @@ graphs <- get_t_graphs(tresps)
 #To print to current working directory, set path = "./".
 print_graphs(graphs,
              path = tempdir())
-print("N")
 
 #View parameters
 pars

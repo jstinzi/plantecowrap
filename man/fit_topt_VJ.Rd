@@ -9,7 +9,8 @@ fit_topt_VJ(
   varnames = list(Vcmax = "Vcmax", Jmax = "Jmax", Tleaf = "Tleaf"),
   title = NULL,
   limit_jmax = 1e+05,
-  limit_vcmax = 1e+05
+  limit_vcmax = 1e+05,
+  ...
 )
 }
 \arguments{
@@ -28,6 +29,9 @@ that these points are not fit.}
 
 \item{limit_vcmax}{Upper limit to Vcmax values for fitting. Defaults to
 100,000 umol m-2 s-1.}
+
+\item{...}{Arguments to be passed on to minpack.lm::nlsLM(). See ?nlsLM for
+details.}
 }
 \value{
 fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and

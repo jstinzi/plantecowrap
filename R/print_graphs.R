@@ -1,12 +1,13 @@
 #' Printing graphs from a list of graphs
 #'
 #' @param data List of graphs to output as .jpeg files
-#' @param path File path for printing out graphs. Defaults to current working
-#' directory
-#' @param height Height of output graphs
-#' @param width Width of output graphs
-#' @param res Resolution of output graphs
-#' @param units Units of height and width
+#' @param path File path for printing out graphs. Use "./" to set to current
+#' working directory.
+#' @param height Height of output graphs. Defaults to 5.
+#' @param width Width of output graphs. Defaults to 5.
+#' @param res Resolution of output graphs. Defaults to 600.
+#' @param units Units of height and width. Defaults to "in".
+#' @param ... Further arguments, specifically for jpeg().
 #' @return print_graphs creates jpeg files from a list of graphs based on
 #' the graph names. Used in combination with get_t_graphs. Output is a
 #' series of .jpeg files in the working directory.
@@ -56,35 +57,25 @@
 #' graphs <- get_t_graphs(out)
 #' #Print graphs out as jpegs into folder
 #' print_graphs(graphs, path = tempdir())
-#' print("N")
 #' }
 print_graphs <- function(data,
-                         path = "./",
+                         path,# = "./",
                          height = 5,
                          width = 5,
                          res = 600,
-                         units = "in") {
-  #Show user working directory
-  if(path == "./") {
-    print(getwd())
-  } else {
-    print(path)
-  }
-  #Ask user for permission to print the graphs to working directory
-  user.prompt <- readline(prompt = 
-  "Do you want to print graphs to your current working directory? Y/N: ")
-  #When permission is given, print graphs to working directory
-  #Otherwise say graphs were not printed
-  if (user.prompt == "Y") {
-  #Print out each graph in the list to the current working directory
+                         units = "in",
+                         ...) {
+  if (!missing(path)) {
+  #Print out each graph in the list to 'path'
   for (i in 1:length(data)) {
-    jpeg(paste0(path, "/", names(data[[i]])[1], ".jpeg"),
-         height = 5, width = 5, res = 600,
-         units = "in")
+    jpeg(file.path(path, paste0(names(data[[i]])[1], ".jpeg")),
+         height = height, width = width, res = res,
+         units = units,
+         ...)
     print(data[[i]])
     dev.off()
   }
   } else {
-    print("Graphs not printed")
+    print("Graphs not printed. 'path' argument required.")
   }
 }

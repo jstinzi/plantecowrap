@@ -11,6 +11,8 @@
 #' that these points are not fit.
 #' @param limit_vcmax Upper limit to Vcmax values for fitting. Defaults to
 #' 100,000 umol m-2 s-1.
+#' @param ... Arguments to be passed on to minpack.lm::nlsLM(). See ?nlsLM for
+#' details.
 #' @return fit_topt_VJ fits the Topt modified Arrhenius function to Vcmax and
 #' Jmax data. Note that Hd may max out at 3000 kJ mol-1 for Jmax and 2000 kJ
 #' mol-1 for Vcmax.
@@ -67,7 +69,8 @@ fit_topt_VJ <- function(data,
                                            Tleaf = "Tleaf"),
                         title = NULL,
                         limit_jmax = 100000,
-                        limit_vcmax = 100000) {
+                        limit_vcmax = 100000,
+                        ...) {
   #Define variables locally to avoid binding issue
   Jmax <- NULL
   Tleaf <- NULL
@@ -144,7 +147,8 @@ fit_topt_VJ <- function(data,
                                         1,
                                       max(data[!is.na(data$Vcmax), ]$Tleaf) +
                                         1),
-                            control = nls.control(maxiter = 100)),
+                            control = nls.control(maxiter = 100),
+                            ...),
                       error = function(e) paste(NA)
     )
     Vcmax_fm$Ea[i] <- tryCatch(coef(model)[[1]],
@@ -232,7 +236,8 @@ fit_topt_VJ <- function(data,
                                       max(data[!is.na(data$Jmax), ]$Jmax) + 1,
                                       max(data[!is.na(data$Jmax), ]$Tleaf) +
                                         1),
-                            control = nls.control(maxiter = 100)),
+                            control = nls.control(maxiter = 100),
+                            ...),
                       error = function(e) paste(NA)
     )
     Jmax_fm$Ea[i] <- tryCatch(coef(model)[[1]],

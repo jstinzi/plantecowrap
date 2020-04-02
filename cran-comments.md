@@ -1,14 +1,15 @@
 ## Resubmission
 This is a resubmission. In this version we have:
-* Added path argument to print_graphs(), which allows user to specify where to
-print the graph files.
-* Changed the print_graphs() example and the 'Using_plantecowrap.Rmd' vignette
-so that path = tempdir()
-* Added tryCatch() to fitacis2() so that when an A-Ci curve fit fails, the
-output is "Failed". Notes on this effect have been added to descriptions of
-fitacis2(), acisummary(), and in 'Using_plantecowrap.Rmd' on lines 74-75. This
-change avoids an error where the entire function fails when there is one
-exception/poor dataset.
+* Removed user prompt from print_graphs() which did not make sense.
+* 'path' argument must now be specified every time print_graphs() is used. The
+default value was removed.
+* file.path() is now used in jpeg() of print_graphs().
+* Changed print_graphs() so that the 'height', 'width', 'res', and 'units'
+arguments are actually passed on to jpeg().
+* Added '...' to fitacis2(), print_graphs(), fit_topt_VJ(), and fit_topt_VJs()
+so that arguments can be passed on to key component functions, including
+plantecophys::fitaci() for fitacis2(), jpeg() for print_graphs(), and
+minpack.lm::nlsLM() for fit_topt_VJ() and fit_topt_VJs().
 
 ## Test environments
 * local Windows 10, R 3.6.2

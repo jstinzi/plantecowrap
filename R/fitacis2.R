@@ -49,13 +49,15 @@
 #' intensity in umol m-2 s-1, Rd is respiration rate in umol m-2 s-1,
 #' and Press is atmospheric pressure in kPa. See ?fitaci in plantecophys
 #' for more details.
+#' @param ... Further arguments for plantecophys::fitaci(). See ?fitaci for
+#' details.
 #' @return fitacis2 allows gmeso, GammaStar, and Km to vary with Tleaf.
 #' Output matches the fitacis function from plantecophys. Note that the
 #' temperature response function of Km is derived from the temperature
 #' responses of Ko and Kc in Bernacchi et al.2001, as is the GammaStar
 #' temperature response defaults. The gm defaults are from Bernacchi et
 #' al. 2002 fitted between 1and 35 Celsius. Also note that this ALWAYS
-#' uses gm. To fitdata on a "Ci-basis", set gm25 really high (e.g.
+#' uses gm. To fit data on a "Ci-basis", set gm25 really high (e.g.
 #' 10000 mol m-2 s-1 bar-1) and Egm to 0 kJ mol-1.
 #' 
 #' In some instances (e.g. very low stomatal conductance), fitacis2 will fail.
@@ -115,7 +117,8 @@ fitacis2 <- function(data,
                                      Ci = "Ci", #umol mol-1
                                      PPFD = "PARi", #umol m-2 s-1
                                      Rd = "Rd", #umol m-2 s-1
-                                     Press = "Press")) { #kPa
+                                     Press = "Press"), #kPa
+                     ...) {
   #Assign group names and pressure
   data$group1 <- data[, group1]
   data$Press <- data[, varnames$Press]
@@ -182,7 +185,8 @@ fitacis2 <- function(data,
                         PPFD = PPFD,
                         Tleaf = Tleaf,
                         alpha = alpha,
-                        theta = theta),
+                        theta = theta,
+                        ...),
                         error = function(e) paste("Failed"))
     #Assign names
     names(fits)[i] <- data[[i]]$group[1]

@@ -1,3 +1,18 @@
+# plantecowrap 1.0.4
+
+## Minor changes
+
+- Removed user prompt from print_graphs() which did not make sense.
+- 'path' argument must now be specified every time print_graphs() is used. The
+default value was removed.
+- file.path() is now used in jpeg() of print_graphs().
+- Changed print_graphs() so that the 'height', 'width', 'res', and 'units'
+arguments are actually passed on to jpeg().
+- Added '...' to fitacis2(), print_graphs(), fit_topt_VJ(), and fit_topt_VJs()
+so that arguments can be passed on to key component functions, including
+plantecophys::fitaci() for fitacis2(), jpeg() for print_graphs(), and
+minpack.lm::nlsLM() for fit_topt_VJ() and fit_topt_VJs().
+
 # plantecowrap 1.0.3
 
 ## Minor changes
