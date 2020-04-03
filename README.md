@@ -1,6 +1,7 @@
 # plantecowrap
 
 [![Build Status](https://travis-ci.com/jstinzi/plantecowrap.svg?branch=master)](https://travis-ci.com/jstinzi/plantecowrap)
+[![](https://www.r-pkg.org/badges/version/plantecowrap?color=blue)](https://cran.r-project.org/package=plantecowrap)
 
 {plantecowrap} Provides wrapping functions to add to capabilities to 'plantecophys' 
 (Duursma, 2015, <doi:10.1371/journal.pone.0143346>). Key added capabilities 
