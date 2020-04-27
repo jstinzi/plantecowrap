@@ -1,3 +1,10 @@
+# plantecowrap 1.0.5
+
+## Minor changes
+
+- Original definition of alpha in fitacis2() was improperly defined on a CO2-
+basis. This has been corrected to its electron transport definition.
+
 # plantecowrap 1.0.4
 
 ## Minor changes

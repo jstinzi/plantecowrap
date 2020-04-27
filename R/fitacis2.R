@@ -36,8 +36,8 @@
 #' NULL. Units are umol m-2 s-1. See ?fitaci in plantecophys for more details.
 #' @param Tleaf Leaf temperature? Can be retrieved from dataframe. Default is
 #' NULL. Units are Celsius. See ?fitaci in plantecophys for more details.
-#' @param alpha Quantum yield of CO2 assimilation. Default is 0.24. Units are
-#' umol CO2 fixed / umol incident photons. See  ?fitaci in plantecophys for
+#' @param alpha Quantum yield of electron transport. Default is 0.24. Units are
+#' umol electrons / umol incident photons. See  ?fitaci in plantecophys for
 #' more details.
 #' @param theta Curvature of the photosynthetic light response. Default is
 #' 0.85. If light response has sharper transition, increase up to 1. If light
